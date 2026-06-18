@@ -1006,6 +1006,57 @@ const EMBEDDED_UI_CSS = `
     font-size: 11px !important;
   }
 
+  body.special-edition-app-giffer .app-shell {
+    align-items: stretch !important;
+  }
+
+  body.special-edition-app-giffer .left-panel {
+    height: calc(100vh - 16px) !important;
+    max-height: calc(100vh - 16px) !important;
+    padding-bottom: 28px !important;
+    overscroll-behavior: contain !important;
+  }
+
+  body.special-edition-app-giffer .left-panel > :last-child {
+    margin-bottom: 24px !important;
+  }
+
+  body.special-edition-app-giffer .workspace,
+  body.special-edition-app-giffer .preview-panel {
+    height: calc(100vh - 16px) !important;
+    max-height: calc(100vh - 16px) !important;
+  }
+
+  body.special-edition-app-giffer .preview-panel.is-split {
+    align-items: stretch !important;
+    grid-template-columns: minmax(250px, 0.92fr) minmax(340px, 1.08fr) !important;
+    overflow: hidden !important;
+  }
+
+  body.special-edition-app-giffer .preview-panel.is-split .preview-pane {
+    min-height: 0 !important;
+    max-height: 100% !important;
+    overflow: hidden !important;
+  }
+
+  body.special-edition-app-giffer .preview-panel.is-split .video-stage,
+  body.special-edition-app-giffer .preview-panel.is-split .preview-stage {
+    min-height: 0 !important;
+    height: min(48vh, 410px) !important;
+  }
+
+  body.special-edition-app-giffer .preview-panel.is-split .video-controls,
+  body.special-edition-app-giffer .preview-panel.is-split .preview-toolbar,
+  body.special-edition-app-giffer .preview-panel.is-split .thumb-tools {
+    flex: 0 0 auto !important;
+    display: flex !important;
+  }
+
+  body.special-edition-app-giffer .preview-panel.is-split .thumb-strip {
+    flex: 0 1 112px !important;
+    max-height: 112px !important;
+  }
+
   body.special-edition-app-hot-vs-nice {
     height: 100vh !important;
     max-height: 100vh !important;
