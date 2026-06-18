@@ -1986,7 +1986,11 @@ function getTransferKinds(sourceApp, targetApp) {
 }
 
 function shouldForceViewportStillCapture(sourceApp, targetApp) {
-  return sourceApp?.id === "ngon-junk" && VIEWPORT_CAPTURE_IMAGE_TARGETS.has(targetApp?.id);
+  if (sourceApp?.id === "ngon-junk" && VIEWPORT_CAPTURE_IMAGE_TARGETS.has(targetApp?.id)) {
+    return true;
+  }
+
+  return sourceApp?.id === "kira-kira" && ["moire-maker", "pixelmaxxxing"].includes(targetApp?.id);
 }
 
 function getAssetTransferKinds(asset, sourceApp, targetApp) {
