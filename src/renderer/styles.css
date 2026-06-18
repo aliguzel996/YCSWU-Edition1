@@ -8619,13 +8619,33 @@ html.is-electron .window-control {
 /* Empty viewport must be a dark physical screen, not an app canvas. Keep this
    last so earlier iframe/app white backgrounds cannot leak into the idle state. */
 body > .app-shell .app-viewport.is-empty,
+body > .app-shell .app-viewport.is-empty .surface-header,
+body > .app-shell .app-viewport.is-empty .viewport-title,
+body > .app-shell .app-viewport.is-empty .viewport-meta,
 body > .app-shell .app-viewport.is-empty .viewport-host,
 body > .app-shell .app-viewport.is-empty .viewport-empty {
   background: #000000 !important;
   background-color: #000000 !important;
   background-image: none !important;
+  border-color: #000000 !important;
+  box-shadow: none !important;
 }
 
 body > .app-shell .app-viewport.is-empty .viewport-host {
   color: #dff8ff !important;
+}
+
+body > .app-shell .app-viewport.is-empty .surface-header {
+  display: block !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  max-height: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  color: transparent !important;
+}
+
+body > .app-shell .app-viewport.is-empty .viewport-host {
+  top: 0 !important;
+  height: 100% !important;
 }
