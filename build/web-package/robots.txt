@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /bridge-data/
+Sitemap: https://ycswu.co/sitemap.xml

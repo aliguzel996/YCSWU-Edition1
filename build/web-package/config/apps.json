@@ -1,0 +1,3451 @@
+{
+  "suite": {
+    "name": "YCSWU Tools Special Edition",
+    "owner": "aliguzel996",
+    "githubUrl": "https://github.com/aliguzel996",
+    "supportUrl": "https://ycswu.co/araclar/",
+    "excludedAppIds": [
+      "ycswu-tools-launcher"
+    ],
+    "manifestVersion": "0.1.0"
+  },
+  "assetClasses": [
+    {
+      "kind": "still-image",
+      "label": "image",
+      "extensions": [
+        "png",
+        "jpg",
+        "jpeg",
+        "webp",
+        "bmp",
+        "avif",
+        "tif",
+        "tiff"
+      ]
+    },
+    {
+      "kind": "vector",
+      "label": "vector",
+      "extensions": [
+        "svg",
+        "ai",
+        "eps",
+        "pdf"
+      ]
+    },
+    {
+      "kind": "animation",
+      "label": "animation",
+      "extensions": [
+        "gif",
+        "apng"
+      ]
+    },
+    {
+      "kind": "video",
+      "label": "video",
+      "extensions": [
+        "mp4",
+        "mov",
+        "webm",
+        "mkv",
+        "avi"
+      ]
+    },
+    {
+      "kind": "model3d",
+      "label": "3d model",
+      "extensions": [
+        "fbx",
+        "glb",
+        "gltf",
+        "obj",
+        "stl",
+        "dae",
+        "usdz"
+      ]
+    },
+    {
+      "kind": "scene",
+      "label": "scene",
+      "extensions": [
+        "blend",
+        "ycswuscene",
+        "json"
+      ]
+    },
+    {
+      "kind": "layout",
+      "label": "layout",
+      "extensions": [
+        "grid",
+        "layout",
+        "json"
+      ]
+    },
+    {
+      "kind": "text",
+      "label": "text",
+      "extensions": [
+        "txt",
+        "md",
+        "json"
+      ]
+    },
+    {
+      "kind": "palette",
+      "label": "palette",
+      "extensions": [
+        "ase",
+        "aco",
+        "css",
+        "json"
+      ]
+    },
+    {
+      "kind": "archive",
+      "label": "bundle",
+      "extensions": [
+        "zip"
+      ]
+    }
+  ],
+  "busAdapters": [
+    {
+      "id": "bus-rasterize",
+      "name": "asset bus rasterizer",
+      "from": [
+        "vector",
+        "model3d",
+        "scene",
+        "video",
+        "animation"
+      ],
+      "to": [
+        "still-image"
+      ],
+      "mode": "bus"
+    },
+    {
+      "id": "bus-vectorize",
+      "name": "asset bus vectorizer",
+      "from": [
+        "still-image",
+        "layout",
+        "text"
+      ],
+      "to": [
+        "vector"
+      ],
+      "mode": "bus"
+    },
+    {
+      "id": "bus-clip-frame",
+      "name": "asset bus frame extractor",
+      "from": [
+        "video",
+        "animation"
+      ],
+      "to": [
+        "still-image"
+      ],
+      "mode": "bus"
+    },
+    {
+      "id": "bus-motion-pack",
+      "name": "asset bus motion packer",
+      "from": [
+        "still-image",
+        "vector"
+      ],
+      "to": [
+        "animation",
+        "video"
+      ],
+      "mode": "bus"
+    },
+    {
+      "id": "bus-extrude",
+      "name": "asset bus extruder",
+      "from": [
+        "text",
+        "vector",
+        "layout",
+        "still-image"
+      ],
+      "to": [
+        "model3d"
+      ],
+      "mode": "bus"
+    },
+    {
+      "id": "bus-scene-pack",
+      "name": "asset bus scene packer",
+      "from": [
+        "model3d",
+        "scene",
+        "still-image"
+      ],
+      "to": [
+        "scene",
+        "model3d"
+      ],
+      "mode": "bus"
+    },
+    {
+      "id": "bus-package",
+      "name": "asset bus packager",
+      "from": [
+        "still-image",
+        "vector",
+        "animation",
+        "video",
+        "model3d",
+        "scene",
+        "layout",
+        "text",
+        "palette"
+      ],
+      "to": [
+        "archive"
+      ],
+      "mode": "bus"
+    }
+  ],
+  "apps": [
+    {
+      "id": "pixelmaxxxing",
+      "name": "pixelmaxxxing",
+      "headline": "Mosaic remap, tone matching, batch recolor and clean SVG output.",
+      "icon": "./assets/pixelmaxxxing-logo.png",
+      "repoUrl": "https://github.com/aliguzel996/pixelmaxxxing",
+      "siteUrl": "https://ycswu.co/pixelmaxxxing/",
+      "accent": "#111111",
+      "accepts": [
+        {
+          "kind": "still-image",
+          "extensions": [
+            "png",
+            "jpg",
+            "jpeg",
+            "webp"
+          ]
+        },
+        {
+          "kind": "vector",
+          "extensions": [
+            "svg"
+          ]
+        },
+        {
+          "kind": "palette",
+          "extensions": [
+            "ase",
+            "aco",
+            "json"
+          ]
+        }
+      ],
+      "produces": [
+        {
+          "kind": "still-image",
+          "extensions": [
+            "png",
+            "webp"
+          ]
+        },
+        {
+          "kind": "vector",
+          "extensions": [
+            "svg"
+          ]
+        },
+        {
+          "kind": "palette",
+          "extensions": [
+            "json"
+          ]
+        }
+      ],
+      "transforms": [
+        {
+          "from": [
+            "still-image"
+          ],
+          "to": [
+            "still-image",
+            "vector",
+            "palette"
+          ]
+        },
+        {
+          "from": [
+            "vector"
+          ],
+          "to": [
+            "still-image",
+            "vector",
+            "palette"
+          ]
+        }
+      ],
+      "launch": {
+        "mode": "external",
+        "executableName": "pixelmaxxxing.exe",
+        "knownPaths": [
+          "C:\\Users\\guzel\\Documents\\Codex\\pixelmaxxxing\\dist\\pixelmaxxxing-portable-1.0.0-x64.exe"
+        ]
+      },
+      "embed": {
+        "mode": "local",
+        "localRoot": "./pixelmaxxxing/",
+        "indexFile": "index.html",
+        "basePaths": [
+          "./pixelmaxxxing/",
+          "/pixelmaxxxing/"
+        ],
+        "indexPath": "",
+        "available": true,
+        "fileUrl": "",
+        "previewUrl": "./pixelmaxxxing/",
+        "url": "./pixelmaxxxing/"
+      },
+      "acceptsKinds": [
+        "still-image",
+        "vector",
+        "palette"
+      ],
+      "producesKinds": [
+        "still-image",
+        "vector",
+        "palette"
+      ],
+      "acceptsExtensions": [
+        "png",
+        "jpg",
+        "jpeg",
+        "webp",
+        "svg",
+        "ase",
+        "aco",
+        "json"
+      ],
+      "producesExtensions": [
+        "png",
+        "webp",
+        "svg",
+        "json"
+      ]
+    },
+    {
+      "id": "giffer",
+      "name": "giffer",
+      "headline": "Clip or image sequence to GIF/MOV with crop, timing and export tuning.",
+      "icon": "./assets/giffer-logo.png",
+      "repoUrl": "https://github.com/aliguzel996/giffer",
+      "siteUrl": "https://ycswu.co/giffer/",
+      "accent": "#f04b35",
+      "accepts": [
+        {
+          "kind": "video",
+          "extensions": [
+            "mp4",
+            "mov",
+            "webm"
+          ]
+        },
+        {
+          "kind": "animation",
+          "extensions": [
+            "gif"
+          ]
+        }
+      ],
+      "produces": [
+        {
+          "kind": "animation",
+          "extensions": [
+            "gif"
+          ]
+        },
+        {
+          "kind": "video",
+          "extensions": [
+            "mov",
+            "mp4"
+          ]
+        },
+        {
+          "kind": "still-image",
+          "extensions": [
+            "png"
+          ]
+        }
+      ],
+      "transforms": [
+        {
+          "from": [
+            "video",
+            "animation"
+          ],
+          "to": [
+            "animation",
+            "video",
+            "still-image"
+          ]
+        }
+      ],
+      "launch": {
+        "mode": "external",
+        "executableName": "Giffer.exe",
+        "knownPaths": [
+          "C:\\Users\\guzel\\Documents\\Codex\\2026-04-25\\files-mentioned-by-the-user-ekran\\release\\windows\\Giffer.exe"
+        ]
+      },
+      "embed": {
+        "mode": "local",
+        "localRoot": "./giffer/",
+        "indexFile": "index.html",
+        "basePaths": [
+          "./giffer/",
+          "/giffer/"
+        ],
+        "indexPath": "",
+        "available": true,
+        "fileUrl": "",
+        "previewUrl": "./giffer/",
+        "url": "./giffer/"
+      },
+      "acceptsKinds": [
+        "video",
+        "animation"
+      ],
+      "producesKinds": [
+        "animation",
+        "video",
+        "still-image"
+      ],
+      "acceptsExtensions": [
+        "mp4",
+        "mov",
+        "webm",
+        "gif"
+      ],
+      "producesExtensions": [
+        "gif",
+        "mov",
+        "mp4",
+        "png"
+      ]
+    },
+    {
+      "id": "rooms",
+      "name": "rooms",
+      "headline": "Room builder with window, glass, lighting, image, SVG and FBX exports.",
+      "icon": "./assets/rooms-logo.svg",
+      "repoUrl": "https://github.com/aliguzel996/rooms",
+      "siteUrl": "https://ycswu.co/rooms/",
+      "accent": "#2d6cdf",
+      "accepts": [],
+      "produces": [
+        {
+          "kind": "model3d",
+          "extensions": [
+            "fbx",
+            "glb"
+          ]
+        },
+        {
+          "kind": "scene",
+          "extensions": [
+            "json",
+            "ycswuscene"
+          ]
+        },
+        {
+          "kind": "still-image",
+          "extensions": [
+            "png"
+          ]
+        },
+        {
+          "kind": "vector",
+          "extensions": [
+            "svg"
+          ]
+        }
+      ],
+      "transforms": [],
+      "launch": {
+        "mode": "external",
+        "executableName": "rooms.exe",
+        "knownPaths": []
+      },
+      "embed": {
+        "mode": "remote",
+        "url": "https://ycswu.co/rooms/",
+        "basePaths": [
+          "/rooms/"
+        ],
+        "available": true,
+        "previewUrl": "https://ycswu.co/rooms/",
+        "fileUrl": "https://ycswu.co/rooms/"
+      },
+      "acceptsKinds": [],
+      "producesKinds": [
+        "model3d",
+        "scene",
+        "still-image",
+        "vector"
+      ],
+      "acceptsExtensions": [],
+      "producesExtensions": [
+        "fbx",
+        "glb",
+        "json",
+        "ycswuscene",
+        "png",
+        "svg"
+      ]
+    },
+    {
+      "id": "fibonacci-grid-maker",
+      "name": "fibonacci-grid-maker",
+      "headline": "Fibonacci based grid layouts without manual ratio setup.",
+      "icon": "./assets/fibonacci-grid-maker-logo.svg",
+      "repoUrl": "https://github.com/aliguzel996/fibonacci-grid-maker",
+      "siteUrl": "https://ycswu.co/fibonacci-grid-maker/",
+      "accent": "#4b6f3d",
+      "accepts": [
+        {
+          "kind": "layout",
+          "extensions": [
+            "json",
+            "grid",
+            "layout"
+          ]
+        }
+      ],
+      "produces": [
+        {
+          "kind": "layout",
+          "extensions": [
+            "json",
+            "grid"
+          ]
+        },
+        {
+          "kind": "vector",
+          "extensions": [
+            "svg"
+          ]
+        },
+        {
+          "kind": "still-image",
+          "extensions": [
+            "png"
+          ]
+        }
+      ],
+      "transforms": [
+        {
+          "from": [
+            "layout"
+          ],
+          "to": [
+            "layout",
+            "vector",
+            "still-image"
+          ]
+        }
+      ],
+      "launch": {
+        "mode": "external",
+        "executableName": "fibonacci-grid-maker.exe",
+        "knownPaths": []
+      },
+      "embed": {
+        "mode": "local",
+        "localRoot": "./fibonacci-grid-maker/",
+        "indexFile": "index.html",
+        "basePaths": [
+          "./fibonacci-grid-maker/",
+          "/fibonacci-grid-maker/"
+        ],
+        "indexPath": "",
+        "available": true,
+        "fileUrl": "",
+        "previewUrl": "./fibonacci-grid-maker/",
+        "url": "./fibonacci-grid-maker/"
+      },
+      "acceptsKinds": [
+        "layout"
+      ],
+      "producesKinds": [
+        "layout",
+        "vector",
+        "still-image"
+      ],
+      "acceptsExtensions": [
+        "json",
+        "grid",
+        "layout"
+      ],
+      "producesExtensions": [
+        "json",
+        "grid",
+        "svg",
+        "png"
+      ]
+    },
+    {
+      "id": "kira-kira",
+      "name": "kira kira",
+      "headline": "Glitter highlight tool with glow, blades, bokeh and PNG export.",
+      "icon": "./assets/kira-kira-logo.svg",
+      "repoUrl": "https://github.com/aliguzel996/kira-kira",
+      "siteUrl": "https://ycswu.co/kira-kira/",
+      "accent": "#d1a826",
+      "accepts": [
+        {
+          "kind": "still-image",
+          "extensions": [
+            "png",
+            "jpg",
+            "jpeg",
+            "webp"
+          ]
+        }
+      ],
+      "produces": [
+        {
+          "kind": "still-image",
+          "extensions": [
+            "png",
+            "webp"
+          ]
+        }
+      ],
+      "transforms": [
+        {
+          "from": [
+            "still-image"
+          ],
+          "to": [
+            "still-image"
+          ]
+        }
+      ],
+      "launch": {
+        "mode": "external",
+        "executableName": "kira-kira.exe",
+        "knownPaths": []
+      },
+      "embed": {
+        "mode": "local",
+        "localRoot": "./kira-kira/",
+        "indexFile": "index.html",
+        "basePaths": [
+          "./kira-kira/",
+          "/kira-kira/"
+        ],
+        "indexPath": "",
+        "available": true,
+        "fileUrl": "",
+        "previewUrl": "./kira-kira/",
+        "url": "./kira-kira/"
+      },
+      "acceptsKinds": [
+        "still-image"
+      ],
+      "producesKinds": [
+        "still-image"
+      ],
+      "acceptsExtensions": [
+        "png",
+        "jpg",
+        "jpeg",
+        "webp"
+      ],
+      "producesExtensions": [
+        "png",
+        "webp"
+      ]
+    },
+    {
+      "id": "hot-vs-nice",
+      "name": "hot vs nice",
+      "headline": "SVG color exploration for warmer, calmer and alternate palette directions.",
+      "icon": "./assets/hot-vs-nice-logo.png",
+      "repoUrl": "https://github.com/aliguzel996/hot-vs-nice",
+      "siteUrl": "https://ycswu.co/hot-vs-nice/",
+      "accent": "#d8432e",
+      "accepts": [
+        {
+          "kind": "vector",
+          "extensions": [
+            "svg"
+          ]
+        }
+      ],
+      "produces": [
+        {
+          "kind": "vector",
+          "extensions": [
+            "svg"
+          ]
+        },
+        {
+          "kind": "palette",
+          "extensions": [
+            "json",
+            "css"
+          ]
+        },
+        {
+          "kind": "still-image",
+          "extensions": [
+            "png"
+          ]
+        }
+      ],
+      "transforms": [
+        {
+          "from": [
+            "vector"
+          ],
+          "to": [
+            "vector",
+            "palette",
+            "still-image"
+          ]
+        }
+      ],
+      "launch": {
+        "mode": "external",
+        "executableName": "hot-vs-nice.exe",
+        "knownPaths": [
+          "C:\\Users\\guzel\\Documents\\Codex\\2026-04-24\\vekt-re-renk-se-enekleri-uygulamas\\release\\github\\hot-vs-nice-win32-x64\\hot-vs-nice.exe"
+        ]
+      },
+      "embed": {
+        "mode": "local",
+        "localRoot": "./hot-vs-nice/",
+        "indexFile": "index.html",
+        "basePaths": [
+          "./hot-vs-nice/",
+          "/hot-vs-nice/"
+        ],
+        "indexPath": "",
+        "available": true,
+        "fileUrl": "",
+        "previewUrl": "./hot-vs-nice/",
+        "url": "./hot-vs-nice/"
+      },
+      "acceptsKinds": [
+        "vector"
+      ],
+      "producesKinds": [
+        "vector",
+        "palette",
+        "still-image"
+      ],
+      "acceptsExtensions": [
+        "svg"
+      ],
+      "producesExtensions": [
+        "svg",
+        "json",
+        "css",
+        "png"
+      ]
+    },
+    {
+      "id": "gift-converter",
+      "name": "gift converter",
+      "headline": "Batch video-to-GIF conversion with per-file controls and ZIP-ready bundles.",
+      "icon": "./assets/gift-converter-logo.png",
+      "repoUrl": "https://github.com/aliguzel996/GIFt-converter",
+      "siteUrl": "https://ycswu.co/gift-converter/",
+      "accent": "#7b4cc2",
+      "accepts": [
+        {
+          "kind": "video",
+          "extensions": [
+            "mp4",
+            "mov",
+            "webm",
+            "mkv"
+          ]
+        },
+        {
+          "kind": "animation",
+          "extensions": [
+            "gif"
+          ]
+        }
+      ],
+      "produces": [
+        {
+          "kind": "animation",
+          "extensions": [
+            "gif"
+          ]
+        },
+        {
+          "kind": "archive",
+          "extensions": [
+            "zip"
+          ]
+        }
+      ],
+      "transforms": [
+        {
+          "from": [
+            "video",
+            "animation"
+          ],
+          "to": [
+            "animation",
+            "archive"
+          ]
+        }
+      ],
+      "launch": {
+        "mode": "external",
+        "executableName": "gift-converter.exe",
+        "knownPaths": [
+          "C:\\Users\\guzel\\Documents\\Codex\\2026-04-23-masa-st-al-an-bulk-video\\release\\gift-converter-0.1.0.exe"
+        ]
+      },
+      "embed": {
+        "mode": "local",
+        "localRoot": "./gift-converter/",
+        "indexFile": "index.html",
+        "basePaths": [
+          "./gift-converter/",
+          "/gift-converter/"
+        ],
+        "indexPath": "",
+        "available": true,
+        "fileUrl": "",
+        "previewUrl": "./gift-converter/",
+        "url": "./gift-converter/"
+      },
+      "acceptsKinds": [
+        "video",
+        "animation"
+      ],
+      "producesKinds": [
+        "animation",
+        "archive"
+      ],
+      "acceptsExtensions": [
+        "mp4",
+        "mov",
+        "webm",
+        "mkv",
+        "gif"
+      ],
+      "producesExtensions": [
+        "gif",
+        "zip"
+      ]
+    },
+    {
+      "id": "moire-maker",
+      "name": "Moire Maker",
+      "headline": "Screen-camera interference effects from images and videos.",
+      "icon": "./assets/moire-maker-logo.svg",
+      "repoUrl": "https://github.com/aliguzel996/moire-maker",
+      "siteUrl": "https://ycswu.co/moire-maker/",
+      "accent": "#2f8a8d",
+      "accepts": [
+        {
+          "kind": "still-image",
+          "extensions": [
+            "png",
+            "jpg",
+            "jpeg",
+            "webp"
+          ]
+        },
+        {
+          "kind": "video",
+          "extensions": [
+            "mp4",
+            "mov",
+            "webm"
+          ]
+        },
+        {
+          "kind": "animation",
+          "extensions": [
+            "gif"
+          ]
+        }
+      ],
+      "produces": [
+        {
+          "kind": "still-image",
+          "extensions": [
+            "png",
+            "webp"
+          ]
+        },
+        {
+          "kind": "video",
+          "extensions": [
+            "mp4",
+            "webm"
+          ]
+        },
+        {
+          "kind": "animation",
+          "extensions": [
+            "gif"
+          ]
+        }
+      ],
+      "transforms": [
+        {
+          "from": [
+            "still-image",
+            "video",
+            "animation"
+          ],
+          "to": [
+            "still-image",
+            "animation",
+            "video"
+          ]
+        }
+      ],
+      "launch": {
+        "mode": "external",
+        "executableName": "Moire Maker.exe",
+        "knownPaths": []
+      },
+      "embed": {
+        "mode": "local",
+        "localRoot": "./moire-maker/",
+        "indexFile": "index.html",
+        "basePaths": [
+          "./moire-maker/",
+          "/moire-maker/"
+        ],
+        "indexPath": "",
+        "available": true,
+        "fileUrl": "",
+        "previewUrl": "./moire-maker/",
+        "url": "./moire-maker/"
+      },
+      "acceptsKinds": [
+        "still-image",
+        "video",
+        "animation"
+      ],
+      "producesKinds": [
+        "still-image",
+        "video",
+        "animation"
+      ],
+      "acceptsExtensions": [
+        "png",
+        "jpg",
+        "jpeg",
+        "webp",
+        "mp4",
+        "mov",
+        "webm",
+        "gif"
+      ],
+      "producesExtensions": [
+        "png",
+        "webp",
+        "mp4",
+        "webm",
+        "gif"
+      ]
+    },
+    {
+      "id": "2d-to-3d",
+      "name": "2d-to-3d",
+      "headline": "Vector text and shape depth builder for 2D-to-3D passes.",
+      "icon": "./assets/2d-to-3d-logo.png",
+      "repoUrl": "https://github.com/aliguzel996/2D-to-3D",
+      "siteUrl": "https://ycswu.co/2d-to-3d/",
+      "accent": "#6b6f76",
+      "accepts": [
+        {
+          "kind": "vector",
+          "extensions": [
+            "svg"
+          ]
+        }
+      ],
+      "produces": [
+        {
+          "kind": "model3d",
+          "extensions": [
+            "fbx",
+            "glb",
+            "obj"
+          ]
+        },
+        {
+          "kind": "scene",
+          "extensions": [
+            "json",
+            "ycswuscene"
+          ]
+        },
+        {
+          "kind": "still-image",
+          "extensions": [
+            "png"
+          ]
+        }
+      ],
+      "transforms": [
+        {
+          "from": [
+            "vector"
+          ],
+          "to": [
+            "model3d",
+            "scene",
+            "still-image"
+          ]
+        }
+      ],
+      "launch": {
+        "mode": "external",
+        "executableName": "2D to 3D.exe",
+        "knownPaths": [
+          "C:\\Users\\guzel\\Documents\\Codex\\2026-04-29\\vector-text-extruder-yap-caz-yani\\2D to 3D\\windows app\\2d-to-3d-portable-0.1.0.exe"
+        ]
+      },
+      "embed": {
+        "mode": "local",
+        "localRoot": "./2d-to-3d/",
+        "indexFile": "index.html",
+        "basePaths": [
+          "./2d-to-3d/",
+          "/2d-to-3d/"
+        ],
+        "indexPath": "",
+        "available": true,
+        "fileUrl": "",
+        "previewUrl": "./2d-to-3d/",
+        "url": "./2d-to-3d/"
+      },
+      "acceptsKinds": [
+        "vector"
+      ],
+      "producesKinds": [
+        "model3d",
+        "scene",
+        "still-image"
+      ],
+      "acceptsExtensions": [
+        "svg"
+      ],
+      "producesExtensions": [
+        "fbx",
+        "glb",
+        "obj",
+        "json",
+        "ycswuscene",
+        "png"
+      ]
+    },
+    {
+      "id": "ngon-junk",
+      "name": "ngon-junk",
+      "headline": "3D look-dev workspace for scene preview, materials, UVs and exports.",
+      "icon": "./assets/ngon-junk-logo.png",
+      "repoUrl": "https://github.com/aliguzel996/ngon-junk",
+      "siteUrl": "https://ycswu.co/ngon-junk/",
+      "accent": "#f28a14",
+      "accepts": [
+        {
+          "kind": "model3d",
+          "extensions": [
+            "fbx",
+            "glb",
+            "gltf",
+            "obj"
+          ]
+        }
+      ],
+      "produces": [
+        {
+          "kind": "model3d",
+          "extensions": [
+            "fbx",
+            "glb",
+            "gltf",
+            "obj"
+          ]
+        },
+        {
+          "kind": "scene",
+          "extensions": [
+            "json",
+            "ycswuscene"
+          ]
+        },
+        {
+          "kind": "still-image",
+          "extensions": [
+            "png",
+            "webp"
+          ]
+        }
+      ],
+      "transforms": [
+        {
+          "from": [
+            "model3d"
+          ],
+          "to": [
+            "model3d",
+            "scene",
+            "still-image"
+          ]
+        }
+      ],
+      "launch": {
+        "mode": "external",
+        "executableName": "ngon-junk.exe",
+        "knownPaths": [
+          "C:\\Users\\guzel\\Documents\\Codex\\ngon-junk\\release\\windows app\\ngon-junk-1.1.0.exe"
+        ]
+      },
+      "embed": {
+        "mode": "local",
+        "localRoot": "./ngon-junk/",
+        "indexFile": "index.html",
+        "basePaths": [
+          "./ngon-junk/",
+          "/ngon-junk/"
+        ],
+        "indexPath": "",
+        "available": true,
+        "fileUrl": "",
+        "previewUrl": "./ngon-junk/",
+        "url": "./ngon-junk/"
+      },
+      "acceptsKinds": [
+        "model3d"
+      ],
+      "producesKinds": [
+        "model3d",
+        "scene",
+        "still-image"
+      ],
+      "acceptsExtensions": [
+        "fbx",
+        "glb",
+        "gltf",
+        "obj"
+      ],
+      "producesExtensions": [
+        "fbx",
+        "glb",
+        "gltf",
+        "obj",
+        "json",
+        "ycswuscene",
+        "png",
+        "webp"
+      ]
+    }
+  ],
+  "appCount": 10,
+  "matrix": [
+    {
+      "appId": "pixelmaxxxing",
+      "appName": "pixelmaxxxing",
+      "routes": [
+        {
+          "possible": true,
+          "mode": "direct",
+          "routeKinds": [
+            "still-image"
+          ],
+          "segments": [],
+          "label": "still-image",
+          "sourceAppId": "pixelmaxxxing",
+          "targetAppId": "pixelmaxxxing",
+          "sourceKinds": [
+            "still-image",
+            "vector",
+            "palette"
+          ],
+          "targetKinds": [
+            "still-image",
+            "vector",
+            "palette"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "app-route",
+          "routeKinds": [
+            "still-image",
+            "animation"
+          ],
+          "segments": [
+            {
+              "from": "still-image",
+              "to": "animation",
+              "mode": "app",
+              "id": "moire-maker",
+              "label": "Moire Maker"
+            }
+          ],
+          "label": "Moire Maker",
+          "sourceAppId": "pixelmaxxxing",
+          "targetAppId": "giffer",
+          "sourceKinds": [
+            "still-image",
+            "vector",
+            "palette"
+          ],
+          "targetKinds": [
+            "video",
+            "animation"
+          ]
+        },
+        {
+          "possible": false,
+          "mode": "none",
+          "routeKinds": [],
+          "segments": [],
+          "label": "",
+          "sourceAppId": "pixelmaxxxing",
+          "targetAppId": "rooms",
+          "sourceKinds": [
+            "still-image",
+            "vector",
+            "palette"
+          ],
+          "targetKinds": []
+        },
+        {
+          "possible": false,
+          "mode": "none",
+          "routeKinds": [],
+          "segments": [],
+          "label": "",
+          "sourceAppId": "pixelmaxxxing",
+          "targetAppId": "fibonacci-grid-maker",
+          "sourceKinds": [
+            "still-image",
+            "vector",
+            "palette"
+          ],
+          "targetKinds": [
+            "layout"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "direct",
+          "routeKinds": [
+            "still-image"
+          ],
+          "segments": [],
+          "label": "still-image",
+          "sourceAppId": "pixelmaxxxing",
+          "targetAppId": "kira-kira",
+          "sourceKinds": [
+            "still-image",
+            "vector",
+            "palette"
+          ],
+          "targetKinds": [
+            "still-image"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "direct",
+          "routeKinds": [
+            "vector"
+          ],
+          "segments": [],
+          "label": "vector",
+          "sourceAppId": "pixelmaxxxing",
+          "targetAppId": "hot-vs-nice",
+          "sourceKinds": [
+            "still-image",
+            "vector",
+            "palette"
+          ],
+          "targetKinds": [
+            "vector"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "app-route",
+          "routeKinds": [
+            "still-image",
+            "animation"
+          ],
+          "segments": [
+            {
+              "from": "still-image",
+              "to": "animation",
+              "mode": "app",
+              "id": "moire-maker",
+              "label": "Moire Maker"
+            }
+          ],
+          "label": "Moire Maker",
+          "sourceAppId": "pixelmaxxxing",
+          "targetAppId": "gift-converter",
+          "sourceKinds": [
+            "still-image",
+            "vector",
+            "palette"
+          ],
+          "targetKinds": [
+            "video",
+            "animation"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "direct",
+          "routeKinds": [
+            "still-image"
+          ],
+          "segments": [],
+          "label": "still-image",
+          "sourceAppId": "pixelmaxxxing",
+          "targetAppId": "moire-maker",
+          "sourceKinds": [
+            "still-image",
+            "vector",
+            "palette"
+          ],
+          "targetKinds": [
+            "still-image",
+            "video",
+            "animation"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "direct",
+          "routeKinds": [
+            "vector"
+          ],
+          "segments": [],
+          "label": "vector",
+          "sourceAppId": "pixelmaxxxing",
+          "targetAppId": "2d-to-3d",
+          "sourceKinds": [
+            "still-image",
+            "vector",
+            "palette"
+          ],
+          "targetKinds": [
+            "vector"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "bus-route",
+          "routeKinds": [
+            "still-image",
+            "model3d"
+          ],
+          "segments": [
+            {
+              "from": "still-image",
+              "to": "model3d",
+              "mode": "bus",
+              "id": "bus-extrude",
+              "label": "asset bus extruder"
+            }
+          ],
+          "label": "asset bus extruder",
+          "sourceAppId": "pixelmaxxxing",
+          "targetAppId": "ngon-junk",
+          "sourceKinds": [
+            "still-image",
+            "vector",
+            "palette"
+          ],
+          "targetKinds": [
+            "model3d"
+          ]
+        }
+      ]
+    },
+    {
+      "appId": "giffer",
+      "appName": "giffer",
+      "routes": [
+        {
+          "possible": true,
+          "mode": "direct",
+          "routeKinds": [
+            "still-image"
+          ],
+          "segments": [],
+          "label": "still-image",
+          "sourceAppId": "giffer",
+          "targetAppId": "pixelmaxxxing",
+          "sourceKinds": [
+            "animation",
+            "video",
+            "still-image"
+          ],
+          "targetKinds": [
+            "still-image",
+            "vector",
+            "palette"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "direct",
+          "routeKinds": [
+            "animation"
+          ],
+          "segments": [],
+          "label": "animation",
+          "sourceAppId": "giffer",
+          "targetAppId": "giffer",
+          "sourceKinds": [
+            "animation",
+            "video",
+            "still-image"
+          ],
+          "targetKinds": [
+            "video",
+            "animation"
+          ]
+        },
+        {
+          "possible": false,
+          "mode": "none",
+          "routeKinds": [],
+          "segments": [],
+          "label": "",
+          "sourceAppId": "giffer",
+          "targetAppId": "rooms",
+          "sourceKinds": [
+            "animation",
+            "video",
+            "still-image"
+          ],
+          "targetKinds": []
+        },
+        {
+          "possible": false,
+          "mode": "none",
+          "routeKinds": [],
+          "segments": [],
+          "label": "",
+          "sourceAppId": "giffer",
+          "targetAppId": "fibonacci-grid-maker",
+          "sourceKinds": [
+            "animation",
+            "video",
+            "still-image"
+          ],
+          "targetKinds": [
+            "layout"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "direct",
+          "routeKinds": [
+            "still-image"
+          ],
+          "segments": [],
+          "label": "still-image",
+          "sourceAppId": "giffer",
+          "targetAppId": "kira-kira",
+          "sourceKinds": [
+            "animation",
+            "video",
+            "still-image"
+          ],
+          "targetKinds": [
+            "still-image"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "app-route",
+          "routeKinds": [
+            "animation",
+            "vector"
+          ],
+          "segments": [
+            {
+              "from": "still-image",
+              "to": "vector",
+              "mode": "app",
+              "id": "pixelmaxxxing",
+              "label": "pixelmaxxxing"
+            }
+          ],
+          "label": "pixelmaxxxing",
+          "sourceAppId": "giffer",
+          "targetAppId": "hot-vs-nice",
+          "sourceKinds": [
+            "animation",
+            "video",
+            "still-image"
+          ],
+          "targetKinds": [
+            "vector"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "direct",
+          "routeKinds": [
+            "animation"
+          ],
+          "segments": [],
+          "label": "animation",
+          "sourceAppId": "giffer",
+          "targetAppId": "gift-converter",
+          "sourceKinds": [
+            "animation",
+            "video",
+            "still-image"
+          ],
+          "targetKinds": [
+            "video",
+            "animation"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "direct",
+          "routeKinds": [
+            "animation"
+          ],
+          "segments": [],
+          "label": "animation",
+          "sourceAppId": "giffer",
+          "targetAppId": "moire-maker",
+          "sourceKinds": [
+            "animation",
+            "video",
+            "still-image"
+          ],
+          "targetKinds": [
+            "still-image",
+            "video",
+            "animation"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "app-route",
+          "routeKinds": [
+            "animation",
+            "vector"
+          ],
+          "segments": [
+            {
+              "from": "still-image",
+              "to": "vector",
+              "mode": "app",
+              "id": "pixelmaxxxing",
+              "label": "pixelmaxxxing"
+            }
+          ],
+          "label": "pixelmaxxxing",
+          "sourceAppId": "giffer",
+          "targetAppId": "2d-to-3d",
+          "sourceKinds": [
+            "animation",
+            "video",
+            "still-image"
+          ],
+          "targetKinds": [
+            "vector"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "bus-route",
+          "routeKinds": [
+            "animation",
+            "model3d"
+          ],
+          "segments": [
+            {
+              "from": "still-image",
+              "to": "model3d",
+              "mode": "bus",
+              "id": "bus-extrude",
+              "label": "asset bus extruder"
+            }
+          ],
+          "label": "asset bus extruder",
+          "sourceAppId": "giffer",
+          "targetAppId": "ngon-junk",
+          "sourceKinds": [
+            "animation",
+            "video",
+            "still-image"
+          ],
+          "targetKinds": [
+            "model3d"
+          ]
+        }
+      ]
+    },
+    {
+      "appId": "rooms",
+      "appName": "rooms",
+      "routes": [
+        {
+          "possible": true,
+          "mode": "direct",
+          "routeKinds": [
+            "still-image"
+          ],
+          "segments": [],
+          "label": "still-image",
+          "sourceAppId": "rooms",
+          "targetAppId": "pixelmaxxxing",
+          "sourceKinds": [
+            "model3d",
+            "scene",
+            "still-image",
+            "vector"
+          ],
+          "targetKinds": [
+            "still-image",
+            "vector",
+            "palette"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "app-route",
+          "routeKinds": [
+            "model3d",
+            "animation"
+          ],
+          "segments": [
+            {
+              "from": "still-image",
+              "to": "animation",
+              "mode": "app",
+              "id": "moire-maker",
+              "label": "Moire Maker"
+            }
+          ],
+          "label": "Moire Maker",
+          "sourceAppId": "rooms",
+          "targetAppId": "giffer",
+          "sourceKinds": [
+            "model3d",
+            "scene",
+            "still-image",
+            "vector"
+          ],
+          "targetKinds": [
+            "video",
+            "animation"
+          ]
+        },
+        {
+          "possible": false,
+          "mode": "none",
+          "routeKinds": [],
+          "segments": [],
+          "label": "",
+          "sourceAppId": "rooms",
+          "targetAppId": "rooms",
+          "sourceKinds": [
+            "model3d",
+            "scene",
+            "still-image",
+            "vector"
+          ],
+          "targetKinds": []
+        },
+        {
+          "possible": false,
+          "mode": "none",
+          "routeKinds": [],
+          "segments": [],
+          "label": "",
+          "sourceAppId": "rooms",
+          "targetAppId": "fibonacci-grid-maker",
+          "sourceKinds": [
+            "model3d",
+            "scene",
+            "still-image",
+            "vector"
+          ],
+          "targetKinds": [
+            "layout"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "direct",
+          "routeKinds": [
+            "still-image"
+          ],
+          "segments": [],
+          "label": "still-image",
+          "sourceAppId": "rooms",
+          "targetAppId": "kira-kira",
+          "sourceKinds": [
+            "model3d",
+            "scene",
+            "still-image",
+            "vector"
+          ],
+          "targetKinds": [
+            "still-image"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "direct",
+          "routeKinds": [
+            "vector"
+          ],
+          "segments": [],
+          "label": "vector",
+          "sourceAppId": "rooms",
+          "targetAppId": "hot-vs-nice",
+          "sourceKinds": [
+            "model3d",
+            "scene",
+            "still-image",
+            "vector"
+          ],
+          "targetKinds": [
+            "vector"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "app-route",
+          "routeKinds": [
+            "model3d",
+            "animation"
+          ],
+          "segments": [
+            {
+              "from": "still-image",
+              "to": "animation",
+              "mode": "app",
+              "id": "moire-maker",
+              "label": "Moire Maker"
+            }
+          ],
+          "label": "Moire Maker",
+          "sourceAppId": "rooms",
+          "targetAppId": "gift-converter",
+          "sourceKinds": [
+            "model3d",
+            "scene",
+            "still-image",
+            "vector"
+          ],
+          "targetKinds": [
+            "video",
+            "animation"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "direct",
+          "routeKinds": [
+            "still-image"
+          ],
+          "segments": [],
+          "label": "still-image",
+          "sourceAppId": "rooms",
+          "targetAppId": "moire-maker",
+          "sourceKinds": [
+            "model3d",
+            "scene",
+            "still-image",
+            "vector"
+          ],
+          "targetKinds": [
+            "still-image",
+            "video",
+            "animation"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "direct",
+          "routeKinds": [
+            "vector"
+          ],
+          "segments": [],
+          "label": "vector",
+          "sourceAppId": "rooms",
+          "targetAppId": "2d-to-3d",
+          "sourceKinds": [
+            "model3d",
+            "scene",
+            "still-image",
+            "vector"
+          ],
+          "targetKinds": [
+            "vector"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "direct",
+          "routeKinds": [
+            "model3d"
+          ],
+          "segments": [],
+          "label": "model3d",
+          "sourceAppId": "rooms",
+          "targetAppId": "ngon-junk",
+          "sourceKinds": [
+            "model3d",
+            "scene",
+            "still-image",
+            "vector"
+          ],
+          "targetKinds": [
+            "model3d"
+          ]
+        }
+      ]
+    },
+    {
+      "appId": "fibonacci-grid-maker",
+      "appName": "fibonacci-grid-maker",
+      "routes": [
+        {
+          "possible": true,
+          "mode": "direct",
+          "routeKinds": [
+            "vector"
+          ],
+          "segments": [],
+          "label": "vector",
+          "sourceAppId": "fibonacci-grid-maker",
+          "targetAppId": "pixelmaxxxing",
+          "sourceKinds": [
+            "layout",
+            "vector",
+            "still-image"
+          ],
+          "targetKinds": [
+            "still-image",
+            "vector",
+            "palette"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "bus-route",
+          "routeKinds": [
+            "layout",
+            "animation"
+          ],
+          "segments": [
+            {
+              "from": "vector",
+              "to": "animation",
+              "mode": "bus",
+              "id": "bus-motion-pack",
+              "label": "asset bus motion packer"
+            }
+          ],
+          "label": "asset bus motion packer",
+          "sourceAppId": "fibonacci-grid-maker",
+          "targetAppId": "giffer",
+          "sourceKinds": [
+            "layout",
+            "vector",
+            "still-image"
+          ],
+          "targetKinds": [
+            "video",
+            "animation"
+          ]
+        },
+        {
+          "possible": false,
+          "mode": "none",
+          "routeKinds": [],
+          "segments": [],
+          "label": "",
+          "sourceAppId": "fibonacci-grid-maker",
+          "targetAppId": "rooms",
+          "sourceKinds": [
+            "layout",
+            "vector",
+            "still-image"
+          ],
+          "targetKinds": []
+        },
+        {
+          "possible": true,
+          "mode": "direct",
+          "routeKinds": [
+            "layout"
+          ],
+          "segments": [],
+          "label": "layout",
+          "sourceAppId": "fibonacci-grid-maker",
+          "targetAppId": "fibonacci-grid-maker",
+          "sourceKinds": [
+            "layout",
+            "vector",
+            "still-image"
+          ],
+          "targetKinds": [
+            "layout"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "direct",
+          "routeKinds": [
+            "still-image"
+          ],
+          "segments": [],
+          "label": "still-image",
+          "sourceAppId": "fibonacci-grid-maker",
+          "targetAppId": "kira-kira",
+          "sourceKinds": [
+            "layout",
+            "vector",
+            "still-image"
+          ],
+          "targetKinds": [
+            "still-image"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "direct",
+          "routeKinds": [
+            "vector"
+          ],
+          "segments": [],
+          "label": "vector",
+          "sourceAppId": "fibonacci-grid-maker",
+          "targetAppId": "hot-vs-nice",
+          "sourceKinds": [
+            "layout",
+            "vector",
+            "still-image"
+          ],
+          "targetKinds": [
+            "vector"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "bus-route",
+          "routeKinds": [
+            "layout",
+            "animation"
+          ],
+          "segments": [
+            {
+              "from": "vector",
+              "to": "animation",
+              "mode": "bus",
+              "id": "bus-motion-pack",
+              "label": "asset bus motion packer"
+            }
+          ],
+          "label": "asset bus motion packer",
+          "sourceAppId": "fibonacci-grid-maker",
+          "targetAppId": "gift-converter",
+          "sourceKinds": [
+            "layout",
+            "vector",
+            "still-image"
+          ],
+          "targetKinds": [
+            "video",
+            "animation"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "direct",
+          "routeKinds": [
+            "still-image"
+          ],
+          "segments": [],
+          "label": "still-image",
+          "sourceAppId": "fibonacci-grid-maker",
+          "targetAppId": "moire-maker",
+          "sourceKinds": [
+            "layout",
+            "vector",
+            "still-image"
+          ],
+          "targetKinds": [
+            "still-image",
+            "video",
+            "animation"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "direct",
+          "routeKinds": [
+            "vector"
+          ],
+          "segments": [],
+          "label": "vector",
+          "sourceAppId": "fibonacci-grid-maker",
+          "targetAppId": "2d-to-3d",
+          "sourceKinds": [
+            "layout",
+            "vector",
+            "still-image"
+          ],
+          "targetKinds": [
+            "vector"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "bus-route",
+          "routeKinds": [
+            "layout",
+            "model3d"
+          ],
+          "segments": [
+            {
+              "from": "layout",
+              "to": "model3d",
+              "mode": "bus",
+              "id": "bus-extrude",
+              "label": "asset bus extruder"
+            }
+          ],
+          "label": "asset bus extruder",
+          "sourceAppId": "fibonacci-grid-maker",
+          "targetAppId": "ngon-junk",
+          "sourceKinds": [
+            "layout",
+            "vector",
+            "still-image"
+          ],
+          "targetKinds": [
+            "model3d"
+          ]
+        }
+      ]
+    },
+    {
+      "appId": "kira-kira",
+      "appName": "kira kira",
+      "routes": [
+        {
+          "possible": true,
+          "mode": "direct",
+          "routeKinds": [
+            "still-image"
+          ],
+          "segments": [],
+          "label": "still-image",
+          "sourceAppId": "kira-kira",
+          "targetAppId": "pixelmaxxxing",
+          "sourceKinds": [
+            "still-image"
+          ],
+          "targetKinds": [
+            "still-image",
+            "vector",
+            "palette"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "app-route",
+          "routeKinds": [
+            "still-image",
+            "animation"
+          ],
+          "segments": [
+            {
+              "from": "still-image",
+              "to": "animation",
+              "mode": "app",
+              "id": "moire-maker",
+              "label": "Moire Maker"
+            }
+          ],
+          "label": "Moire Maker",
+          "sourceAppId": "kira-kira",
+          "targetAppId": "giffer",
+          "sourceKinds": [
+            "still-image"
+          ],
+          "targetKinds": [
+            "video",
+            "animation"
+          ]
+        },
+        {
+          "possible": false,
+          "mode": "none",
+          "routeKinds": [],
+          "segments": [],
+          "label": "",
+          "sourceAppId": "kira-kira",
+          "targetAppId": "rooms",
+          "sourceKinds": [
+            "still-image"
+          ],
+          "targetKinds": []
+        },
+        {
+          "possible": false,
+          "mode": "none",
+          "routeKinds": [],
+          "segments": [],
+          "label": "",
+          "sourceAppId": "kira-kira",
+          "targetAppId": "fibonacci-grid-maker",
+          "sourceKinds": [
+            "still-image"
+          ],
+          "targetKinds": [
+            "layout"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "direct",
+          "routeKinds": [
+            "still-image"
+          ],
+          "segments": [],
+          "label": "still-image",
+          "sourceAppId": "kira-kira",
+          "targetAppId": "kira-kira",
+          "sourceKinds": [
+            "still-image"
+          ],
+          "targetKinds": [
+            "still-image"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "app-route",
+          "routeKinds": [
+            "still-image",
+            "vector"
+          ],
+          "segments": [
+            {
+              "from": "still-image",
+              "to": "vector",
+              "mode": "app",
+              "id": "pixelmaxxxing",
+              "label": "pixelmaxxxing"
+            }
+          ],
+          "label": "pixelmaxxxing",
+          "sourceAppId": "kira-kira",
+          "targetAppId": "hot-vs-nice",
+          "sourceKinds": [
+            "still-image"
+          ],
+          "targetKinds": [
+            "vector"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "app-route",
+          "routeKinds": [
+            "still-image",
+            "animation"
+          ],
+          "segments": [
+            {
+              "from": "still-image",
+              "to": "animation",
+              "mode": "app",
+              "id": "moire-maker",
+              "label": "Moire Maker"
+            }
+          ],
+          "label": "Moire Maker",
+          "sourceAppId": "kira-kira",
+          "targetAppId": "gift-converter",
+          "sourceKinds": [
+            "still-image"
+          ],
+          "targetKinds": [
+            "video",
+            "animation"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "direct",
+          "routeKinds": [
+            "still-image"
+          ],
+          "segments": [],
+          "label": "still-image",
+          "sourceAppId": "kira-kira",
+          "targetAppId": "moire-maker",
+          "sourceKinds": [
+            "still-image"
+          ],
+          "targetKinds": [
+            "still-image",
+            "video",
+            "animation"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "app-route",
+          "routeKinds": [
+            "still-image",
+            "vector"
+          ],
+          "segments": [
+            {
+              "from": "still-image",
+              "to": "vector",
+              "mode": "app",
+              "id": "pixelmaxxxing",
+              "label": "pixelmaxxxing"
+            }
+          ],
+          "label": "pixelmaxxxing",
+          "sourceAppId": "kira-kira",
+          "targetAppId": "2d-to-3d",
+          "sourceKinds": [
+            "still-image"
+          ],
+          "targetKinds": [
+            "vector"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "bus-route",
+          "routeKinds": [
+            "still-image",
+            "model3d"
+          ],
+          "segments": [
+            {
+              "from": "still-image",
+              "to": "model3d",
+              "mode": "bus",
+              "id": "bus-extrude",
+              "label": "asset bus extruder"
+            }
+          ],
+          "label": "asset bus extruder",
+          "sourceAppId": "kira-kira",
+          "targetAppId": "ngon-junk",
+          "sourceKinds": [
+            "still-image"
+          ],
+          "targetKinds": [
+            "model3d"
+          ]
+        }
+      ]
+    },
+    {
+      "appId": "hot-vs-nice",
+      "appName": "hot vs nice",
+      "routes": [
+        {
+          "possible": true,
+          "mode": "direct",
+          "routeKinds": [
+            "vector"
+          ],
+          "segments": [],
+          "label": "vector",
+          "sourceAppId": "hot-vs-nice",
+          "targetAppId": "pixelmaxxxing",
+          "sourceKinds": [
+            "vector",
+            "palette",
+            "still-image"
+          ],
+          "targetKinds": [
+            "still-image",
+            "vector",
+            "palette"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "bus-route",
+          "routeKinds": [
+            "vector",
+            "animation"
+          ],
+          "segments": [
+            {
+              "from": "vector",
+              "to": "animation",
+              "mode": "bus",
+              "id": "bus-motion-pack",
+              "label": "asset bus motion packer"
+            }
+          ],
+          "label": "asset bus motion packer",
+          "sourceAppId": "hot-vs-nice",
+          "targetAppId": "giffer",
+          "sourceKinds": [
+            "vector",
+            "palette",
+            "still-image"
+          ],
+          "targetKinds": [
+            "video",
+            "animation"
+          ]
+        },
+        {
+          "possible": false,
+          "mode": "none",
+          "routeKinds": [],
+          "segments": [],
+          "label": "",
+          "sourceAppId": "hot-vs-nice",
+          "targetAppId": "rooms",
+          "sourceKinds": [
+            "vector",
+            "palette",
+            "still-image"
+          ],
+          "targetKinds": []
+        },
+        {
+          "possible": false,
+          "mode": "none",
+          "routeKinds": [],
+          "segments": [],
+          "label": "",
+          "sourceAppId": "hot-vs-nice",
+          "targetAppId": "fibonacci-grid-maker",
+          "sourceKinds": [
+            "vector",
+            "palette",
+            "still-image"
+          ],
+          "targetKinds": [
+            "layout"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "direct",
+          "routeKinds": [
+            "still-image"
+          ],
+          "segments": [],
+          "label": "still-image",
+          "sourceAppId": "hot-vs-nice",
+          "targetAppId": "kira-kira",
+          "sourceKinds": [
+            "vector",
+            "palette",
+            "still-image"
+          ],
+          "targetKinds": [
+            "still-image"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "direct",
+          "routeKinds": [
+            "vector"
+          ],
+          "segments": [],
+          "label": "vector",
+          "sourceAppId": "hot-vs-nice",
+          "targetAppId": "hot-vs-nice",
+          "sourceKinds": [
+            "vector",
+            "palette",
+            "still-image"
+          ],
+          "targetKinds": [
+            "vector"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "bus-route",
+          "routeKinds": [
+            "vector",
+            "animation"
+          ],
+          "segments": [
+            {
+              "from": "vector",
+              "to": "animation",
+              "mode": "bus",
+              "id": "bus-motion-pack",
+              "label": "asset bus motion packer"
+            }
+          ],
+          "label": "asset bus motion packer",
+          "sourceAppId": "hot-vs-nice",
+          "targetAppId": "gift-converter",
+          "sourceKinds": [
+            "vector",
+            "palette",
+            "still-image"
+          ],
+          "targetKinds": [
+            "video",
+            "animation"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "direct",
+          "routeKinds": [
+            "still-image"
+          ],
+          "segments": [],
+          "label": "still-image",
+          "sourceAppId": "hot-vs-nice",
+          "targetAppId": "moire-maker",
+          "sourceKinds": [
+            "vector",
+            "palette",
+            "still-image"
+          ],
+          "targetKinds": [
+            "still-image",
+            "video",
+            "animation"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "direct",
+          "routeKinds": [
+            "vector"
+          ],
+          "segments": [],
+          "label": "vector",
+          "sourceAppId": "hot-vs-nice",
+          "targetAppId": "2d-to-3d",
+          "sourceKinds": [
+            "vector",
+            "palette",
+            "still-image"
+          ],
+          "targetKinds": [
+            "vector"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "app-route",
+          "routeKinds": [
+            "vector",
+            "model3d"
+          ],
+          "segments": [
+            {
+              "from": "vector",
+              "to": "model3d",
+              "mode": "app",
+              "id": "2d-to-3d",
+              "label": "2d-to-3d"
+            }
+          ],
+          "label": "2d-to-3d",
+          "sourceAppId": "hot-vs-nice",
+          "targetAppId": "ngon-junk",
+          "sourceKinds": [
+            "vector",
+            "palette",
+            "still-image"
+          ],
+          "targetKinds": [
+            "model3d"
+          ]
+        }
+      ]
+    },
+    {
+      "appId": "gift-converter",
+      "appName": "gift converter",
+      "routes": [
+        {
+          "possible": true,
+          "mode": "app-route",
+          "routeKinds": [
+            "animation",
+            "still-image"
+          ],
+          "segments": [
+            {
+              "from": "animation",
+              "to": "still-image",
+              "mode": "app",
+              "id": "giffer",
+              "label": "giffer"
+            }
+          ],
+          "label": "giffer",
+          "sourceAppId": "gift-converter",
+          "targetAppId": "pixelmaxxxing",
+          "sourceKinds": [
+            "animation",
+            "archive"
+          ],
+          "targetKinds": [
+            "still-image",
+            "vector",
+            "palette"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "direct",
+          "routeKinds": [
+            "animation"
+          ],
+          "segments": [],
+          "label": "animation",
+          "sourceAppId": "gift-converter",
+          "targetAppId": "giffer",
+          "sourceKinds": [
+            "animation",
+            "archive"
+          ],
+          "targetKinds": [
+            "video",
+            "animation"
+          ]
+        },
+        {
+          "possible": false,
+          "mode": "none",
+          "routeKinds": [],
+          "segments": [],
+          "label": "",
+          "sourceAppId": "gift-converter",
+          "targetAppId": "rooms",
+          "sourceKinds": [
+            "animation",
+            "archive"
+          ],
+          "targetKinds": []
+        },
+        {
+          "possible": false,
+          "mode": "none",
+          "routeKinds": [],
+          "segments": [],
+          "label": "",
+          "sourceAppId": "gift-converter",
+          "targetAppId": "fibonacci-grid-maker",
+          "sourceKinds": [
+            "animation",
+            "archive"
+          ],
+          "targetKinds": [
+            "layout"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "app-route",
+          "routeKinds": [
+            "animation",
+            "still-image"
+          ],
+          "segments": [
+            {
+              "from": "animation",
+              "to": "still-image",
+              "mode": "app",
+              "id": "giffer",
+              "label": "giffer"
+            }
+          ],
+          "label": "giffer",
+          "sourceAppId": "gift-converter",
+          "targetAppId": "kira-kira",
+          "sourceKinds": [
+            "animation",
+            "archive"
+          ],
+          "targetKinds": [
+            "still-image"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "app-route",
+          "routeKinds": [
+            "animation",
+            "still-image",
+            "vector"
+          ],
+          "segments": [
+            {
+              "from": "animation",
+              "to": "still-image",
+              "mode": "app",
+              "id": "giffer",
+              "label": "giffer"
+            },
+            {
+              "from": "still-image",
+              "to": "vector",
+              "mode": "app",
+              "id": "pixelmaxxxing",
+              "label": "pixelmaxxxing"
+            }
+          ],
+          "label": "giffer > pixelmaxxxing",
+          "sourceAppId": "gift-converter",
+          "targetAppId": "hot-vs-nice",
+          "sourceKinds": [
+            "animation",
+            "archive"
+          ],
+          "targetKinds": [
+            "vector"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "direct",
+          "routeKinds": [
+            "animation"
+          ],
+          "segments": [],
+          "label": "animation",
+          "sourceAppId": "gift-converter",
+          "targetAppId": "gift-converter",
+          "sourceKinds": [
+            "animation",
+            "archive"
+          ],
+          "targetKinds": [
+            "video",
+            "animation"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "direct",
+          "routeKinds": [
+            "animation"
+          ],
+          "segments": [],
+          "label": "animation",
+          "sourceAppId": "gift-converter",
+          "targetAppId": "moire-maker",
+          "sourceKinds": [
+            "animation",
+            "archive"
+          ],
+          "targetKinds": [
+            "still-image",
+            "video",
+            "animation"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "app-route",
+          "routeKinds": [
+            "animation",
+            "still-image",
+            "vector"
+          ],
+          "segments": [
+            {
+              "from": "animation",
+              "to": "still-image",
+              "mode": "app",
+              "id": "giffer",
+              "label": "giffer"
+            },
+            {
+              "from": "still-image",
+              "to": "vector",
+              "mode": "app",
+              "id": "pixelmaxxxing",
+              "label": "pixelmaxxxing"
+            }
+          ],
+          "label": "giffer > pixelmaxxxing",
+          "sourceAppId": "gift-converter",
+          "targetAppId": "2d-to-3d",
+          "sourceKinds": [
+            "animation",
+            "archive"
+          ],
+          "targetKinds": [
+            "vector"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "bus-route",
+          "routeKinds": [
+            "animation",
+            "still-image",
+            "model3d"
+          ],
+          "segments": [
+            {
+              "from": "animation",
+              "to": "still-image",
+              "mode": "app",
+              "id": "giffer",
+              "label": "giffer"
+            },
+            {
+              "from": "still-image",
+              "to": "model3d",
+              "mode": "bus",
+              "id": "bus-extrude",
+              "label": "asset bus extruder"
+            }
+          ],
+          "label": "giffer > asset bus extruder",
+          "sourceAppId": "gift-converter",
+          "targetAppId": "ngon-junk",
+          "sourceKinds": [
+            "animation",
+            "archive"
+          ],
+          "targetKinds": [
+            "model3d"
+          ]
+        }
+      ]
+    },
+    {
+      "appId": "moire-maker",
+      "appName": "Moire Maker",
+      "routes": [
+        {
+          "possible": true,
+          "mode": "direct",
+          "routeKinds": [
+            "still-image"
+          ],
+          "segments": [],
+          "label": "still-image",
+          "sourceAppId": "moire-maker",
+          "targetAppId": "pixelmaxxxing",
+          "sourceKinds": [
+            "still-image",
+            "video",
+            "animation"
+          ],
+          "targetKinds": [
+            "still-image",
+            "vector",
+            "palette"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "direct",
+          "routeKinds": [
+            "video"
+          ],
+          "segments": [],
+          "label": "video",
+          "sourceAppId": "moire-maker",
+          "targetAppId": "giffer",
+          "sourceKinds": [
+            "still-image",
+            "video",
+            "animation"
+          ],
+          "targetKinds": [
+            "video",
+            "animation"
+          ]
+        },
+        {
+          "possible": false,
+          "mode": "none",
+          "routeKinds": [],
+          "segments": [],
+          "label": "",
+          "sourceAppId": "moire-maker",
+          "targetAppId": "rooms",
+          "sourceKinds": [
+            "still-image",
+            "video",
+            "animation"
+          ],
+          "targetKinds": []
+        },
+        {
+          "possible": false,
+          "mode": "none",
+          "routeKinds": [],
+          "segments": [],
+          "label": "",
+          "sourceAppId": "moire-maker",
+          "targetAppId": "fibonacci-grid-maker",
+          "sourceKinds": [
+            "still-image",
+            "video",
+            "animation"
+          ],
+          "targetKinds": [
+            "layout"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "direct",
+          "routeKinds": [
+            "still-image"
+          ],
+          "segments": [],
+          "label": "still-image",
+          "sourceAppId": "moire-maker",
+          "targetAppId": "kira-kira",
+          "sourceKinds": [
+            "still-image",
+            "video",
+            "animation"
+          ],
+          "targetKinds": [
+            "still-image"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "app-route",
+          "routeKinds": [
+            "still-image",
+            "vector"
+          ],
+          "segments": [
+            {
+              "from": "still-image",
+              "to": "vector",
+              "mode": "app",
+              "id": "pixelmaxxxing",
+              "label": "pixelmaxxxing"
+            }
+          ],
+          "label": "pixelmaxxxing",
+          "sourceAppId": "moire-maker",
+          "targetAppId": "hot-vs-nice",
+          "sourceKinds": [
+            "still-image",
+            "video",
+            "animation"
+          ],
+          "targetKinds": [
+            "vector"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "direct",
+          "routeKinds": [
+            "video"
+          ],
+          "segments": [],
+          "label": "video",
+          "sourceAppId": "moire-maker",
+          "targetAppId": "gift-converter",
+          "sourceKinds": [
+            "still-image",
+            "video",
+            "animation"
+          ],
+          "targetKinds": [
+            "video",
+            "animation"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "direct",
+          "routeKinds": [
+            "still-image"
+          ],
+          "segments": [],
+          "label": "still-image",
+          "sourceAppId": "moire-maker",
+          "targetAppId": "moire-maker",
+          "sourceKinds": [
+            "still-image",
+            "video",
+            "animation"
+          ],
+          "targetKinds": [
+            "still-image",
+            "video",
+            "animation"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "app-route",
+          "routeKinds": [
+            "still-image",
+            "vector"
+          ],
+          "segments": [
+            {
+              "from": "still-image",
+              "to": "vector",
+              "mode": "app",
+              "id": "pixelmaxxxing",
+              "label": "pixelmaxxxing"
+            }
+          ],
+          "label": "pixelmaxxxing",
+          "sourceAppId": "moire-maker",
+          "targetAppId": "2d-to-3d",
+          "sourceKinds": [
+            "still-image",
+            "video",
+            "animation"
+          ],
+          "targetKinds": [
+            "vector"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "bus-route",
+          "routeKinds": [
+            "still-image",
+            "model3d"
+          ],
+          "segments": [
+            {
+              "from": "still-image",
+              "to": "model3d",
+              "mode": "bus",
+              "id": "bus-extrude",
+              "label": "asset bus extruder"
+            }
+          ],
+          "label": "asset bus extruder",
+          "sourceAppId": "moire-maker",
+          "targetAppId": "ngon-junk",
+          "sourceKinds": [
+            "still-image",
+            "video",
+            "animation"
+          ],
+          "targetKinds": [
+            "model3d"
+          ]
+        }
+      ]
+    },
+    {
+      "appId": "2d-to-3d",
+      "appName": "2d-to-3d",
+      "routes": [
+        {
+          "possible": true,
+          "mode": "direct",
+          "routeKinds": [
+            "still-image"
+          ],
+          "segments": [],
+          "label": "still-image",
+          "sourceAppId": "2d-to-3d",
+          "targetAppId": "pixelmaxxxing",
+          "sourceKinds": [
+            "model3d",
+            "scene",
+            "still-image"
+          ],
+          "targetKinds": [
+            "still-image",
+            "vector",
+            "palette"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "app-route",
+          "routeKinds": [
+            "model3d",
+            "animation"
+          ],
+          "segments": [
+            {
+              "from": "still-image",
+              "to": "animation",
+              "mode": "app",
+              "id": "moire-maker",
+              "label": "Moire Maker"
+            }
+          ],
+          "label": "Moire Maker",
+          "sourceAppId": "2d-to-3d",
+          "targetAppId": "giffer",
+          "sourceKinds": [
+            "model3d",
+            "scene",
+            "still-image"
+          ],
+          "targetKinds": [
+            "video",
+            "animation"
+          ]
+        },
+        {
+          "possible": false,
+          "mode": "none",
+          "routeKinds": [],
+          "segments": [],
+          "label": "",
+          "sourceAppId": "2d-to-3d",
+          "targetAppId": "rooms",
+          "sourceKinds": [
+            "model3d",
+            "scene",
+            "still-image"
+          ],
+          "targetKinds": []
+        },
+        {
+          "possible": false,
+          "mode": "none",
+          "routeKinds": [],
+          "segments": [],
+          "label": "",
+          "sourceAppId": "2d-to-3d",
+          "targetAppId": "fibonacci-grid-maker",
+          "sourceKinds": [
+            "model3d",
+            "scene",
+            "still-image"
+          ],
+          "targetKinds": [
+            "layout"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "direct",
+          "routeKinds": [
+            "still-image"
+          ],
+          "segments": [],
+          "label": "still-image",
+          "sourceAppId": "2d-to-3d",
+          "targetAppId": "kira-kira",
+          "sourceKinds": [
+            "model3d",
+            "scene",
+            "still-image"
+          ],
+          "targetKinds": [
+            "still-image"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "app-route",
+          "routeKinds": [
+            "model3d",
+            "vector"
+          ],
+          "segments": [
+            {
+              "from": "still-image",
+              "to": "vector",
+              "mode": "app",
+              "id": "pixelmaxxxing",
+              "label": "pixelmaxxxing"
+            }
+          ],
+          "label": "pixelmaxxxing",
+          "sourceAppId": "2d-to-3d",
+          "targetAppId": "hot-vs-nice",
+          "sourceKinds": [
+            "model3d",
+            "scene",
+            "still-image"
+          ],
+          "targetKinds": [
+            "vector"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "app-route",
+          "routeKinds": [
+            "model3d",
+            "animation"
+          ],
+          "segments": [
+            {
+              "from": "still-image",
+              "to": "animation",
+              "mode": "app",
+              "id": "moire-maker",
+              "label": "Moire Maker"
+            }
+          ],
+          "label": "Moire Maker",
+          "sourceAppId": "2d-to-3d",
+          "targetAppId": "gift-converter",
+          "sourceKinds": [
+            "model3d",
+            "scene",
+            "still-image"
+          ],
+          "targetKinds": [
+            "video",
+            "animation"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "direct",
+          "routeKinds": [
+            "still-image"
+          ],
+          "segments": [],
+          "label": "still-image",
+          "sourceAppId": "2d-to-3d",
+          "targetAppId": "moire-maker",
+          "sourceKinds": [
+            "model3d",
+            "scene",
+            "still-image"
+          ],
+          "targetKinds": [
+            "still-image",
+            "video",
+            "animation"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "app-route",
+          "routeKinds": [
+            "model3d",
+            "vector"
+          ],
+          "segments": [
+            {
+              "from": "still-image",
+              "to": "vector",
+              "mode": "app",
+              "id": "pixelmaxxxing",
+              "label": "pixelmaxxxing"
+            }
+          ],
+          "label": "pixelmaxxxing",
+          "sourceAppId": "2d-to-3d",
+          "targetAppId": "2d-to-3d",
+          "sourceKinds": [
+            "model3d",
+            "scene",
+            "still-image"
+          ],
+          "targetKinds": [
+            "vector"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "direct",
+          "routeKinds": [
+            "model3d"
+          ],
+          "segments": [],
+          "label": "model3d",
+          "sourceAppId": "2d-to-3d",
+          "targetAppId": "ngon-junk",
+          "sourceKinds": [
+            "model3d",
+            "scene",
+            "still-image"
+          ],
+          "targetKinds": [
+            "model3d"
+          ]
+        }
+      ]
+    },
+    {
+      "appId": "ngon-junk",
+      "appName": "ngon-junk",
+      "routes": [
+        {
+          "possible": true,
+          "mode": "direct",
+          "routeKinds": [
+            "still-image"
+          ],
+          "segments": [],
+          "label": "still-image",
+          "sourceAppId": "ngon-junk",
+          "targetAppId": "pixelmaxxxing",
+          "sourceKinds": [
+            "model3d",
+            "scene",
+            "still-image"
+          ],
+          "targetKinds": [
+            "still-image",
+            "vector",
+            "palette"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "app-route",
+          "routeKinds": [
+            "model3d",
+            "animation"
+          ],
+          "segments": [
+            {
+              "from": "still-image",
+              "to": "animation",
+              "mode": "app",
+              "id": "moire-maker",
+              "label": "Moire Maker"
+            }
+          ],
+          "label": "Moire Maker",
+          "sourceAppId": "ngon-junk",
+          "targetAppId": "giffer",
+          "sourceKinds": [
+            "model3d",
+            "scene",
+            "still-image"
+          ],
+          "targetKinds": [
+            "video",
+            "animation"
+          ]
+        },
+        {
+          "possible": false,
+          "mode": "none",
+          "routeKinds": [],
+          "segments": [],
+          "label": "",
+          "sourceAppId": "ngon-junk",
+          "targetAppId": "rooms",
+          "sourceKinds": [
+            "model3d",
+            "scene",
+            "still-image"
+          ],
+          "targetKinds": []
+        },
+        {
+          "possible": false,
+          "mode": "none",
+          "routeKinds": [],
+          "segments": [],
+          "label": "",
+          "sourceAppId": "ngon-junk",
+          "targetAppId": "fibonacci-grid-maker",
+          "sourceKinds": [
+            "model3d",
+            "scene",
+            "still-image"
+          ],
+          "targetKinds": [
+            "layout"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "direct",
+          "routeKinds": [
+            "still-image"
+          ],
+          "segments": [],
+          "label": "still-image",
+          "sourceAppId": "ngon-junk",
+          "targetAppId": "kira-kira",
+          "sourceKinds": [
+            "model3d",
+            "scene",
+            "still-image"
+          ],
+          "targetKinds": [
+            "still-image"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "app-route",
+          "routeKinds": [
+            "model3d",
+            "vector"
+          ],
+          "segments": [
+            {
+              "from": "still-image",
+              "to": "vector",
+              "mode": "app",
+              "id": "pixelmaxxxing",
+              "label": "pixelmaxxxing"
+            }
+          ],
+          "label": "pixelmaxxxing",
+          "sourceAppId": "ngon-junk",
+          "targetAppId": "hot-vs-nice",
+          "sourceKinds": [
+            "model3d",
+            "scene",
+            "still-image"
+          ],
+          "targetKinds": [
+            "vector"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "app-route",
+          "routeKinds": [
+            "model3d",
+            "animation"
+          ],
+          "segments": [
+            {
+              "from": "still-image",
+              "to": "animation",
+              "mode": "app",
+              "id": "moire-maker",
+              "label": "Moire Maker"
+            }
+          ],
+          "label": "Moire Maker",
+          "sourceAppId": "ngon-junk",
+          "targetAppId": "gift-converter",
+          "sourceKinds": [
+            "model3d",
+            "scene",
+            "still-image"
+          ],
+          "targetKinds": [
+            "video",
+            "animation"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "direct",
+          "routeKinds": [
+            "still-image"
+          ],
+          "segments": [],
+          "label": "still-image",
+          "sourceAppId": "ngon-junk",
+          "targetAppId": "moire-maker",
+          "sourceKinds": [
+            "model3d",
+            "scene",
+            "still-image"
+          ],
+          "targetKinds": [
+            "still-image",
+            "video",
+            "animation"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "app-route",
+          "routeKinds": [
+            "model3d",
+            "vector"
+          ],
+          "segments": [
+            {
+              "from": "still-image",
+              "to": "vector",
+              "mode": "app",
+              "id": "pixelmaxxxing",
+              "label": "pixelmaxxxing"
+            }
+          ],
+          "label": "pixelmaxxxing",
+          "sourceAppId": "ngon-junk",
+          "targetAppId": "2d-to-3d",
+          "sourceKinds": [
+            "model3d",
+            "scene",
+            "still-image"
+          ],
+          "targetKinds": [
+            "vector"
+          ]
+        },
+        {
+          "possible": true,
+          "mode": "direct",
+          "routeKinds": [
+            "model3d"
+          ],
+          "segments": [],
+          "label": "model3d",
+          "sourceAppId": "ngon-junk",
+          "targetAppId": "ngon-junk",
+          "sourceKinds": [
+            "model3d",
+            "scene",
+            "still-image"
+          ],
+          "targetKinds": [
+            "model3d"
+          ]
+        }
+      ]
+    }
+  ]
+}

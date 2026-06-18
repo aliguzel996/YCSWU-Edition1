@@ -1,0 +1,17 @@
+{
+  "name": "YCSWU Tools Special Edition",
+  "short_name": "YCSWU Tools",
+  "description": "A physical-device styled web shell for YCSWU creative tools.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "fullscreen",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "./assets/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "name": "Moire Maker",
+  "short_name": "Moire Maker",
+  "description": "Create realistic moire effects, chromatic aberration, lens distortion, and JPG, GIF, or video exports from images and videos.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f9f9f5",
+  "theme_color": "#111111",
+  "icons": [
+    {
+      "src": "./favicon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./moire-maker.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "categories": ["graphics", "photo", "video", "utilities"]
+}

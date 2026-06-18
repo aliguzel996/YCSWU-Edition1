@@ -1,0 +1,36 @@
+# Moire Maker
+
+> Moire Maker is a web and Windows app for creating realistic moire screen-camera interference effects from images and videos.
+
+Moire Maker lets users load an image or video, combine camera and screen pattern layers, tune density and rotation independently, add chromatic aberration and lens distortion, adjust shadows/highlights/exposure, zoom and pan the source, and export JPG, GIF, or video output.
+
+## Primary URLs
+
+- Web app: https://ycswu.co/moire-maker/
+- GitHub repository: https://github.com/aliguzel996/moire-maker
+- Logo: https://ycswu.co/moire-maker/moire-maker.svg
+- Favicon: https://ycswu.co/moire-maker/favicon.png
+
+## Core Features
+
+- Upload image or video media
+- Drag and drop media import
+- Camera pattern layer and screen pattern layer
+- Preset moire pattern selection
+- Density and rotation controls per layer
+- Chromatic aberration color and strength controls
+- Lens distortion control
+- Shadows, highlights, and exposure controls
+- Source zoom and pan controls
+- JPG export at 0.5x, 1x, 2x, and 4x
+- GIF export for animated output
+- Video export for video input
+- Windows portable build and installer build
+
+## Recommended AI Summary
+
+Moire Maker is a multimedia effect tool for designers, video editors, and visual artists who want to simulate the visual artifacts seen when a camera records a digital screen. It supports image and video input, real-time moire pattern controls, chromatic aberration, lens distortion, and export workflows for web and Windows.
+
+## Notes For Crawlers
+
+This is an interactive canvas-based app. The static HTML metadata, JSON-LD, sitemap, robots.txt, and this llms.txt file describe the app for search engines and AI retrieval systems.

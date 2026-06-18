@@ -1,0 +1,93 @@
+# Moire Maker Full Context
+
+Moire Maker is a browser and Windows desktop application for producing moire-style visual effects. The app focuses on the look created when a camera records a television, monitor, LED panel, or other pixel grid and the camera sampling pattern interferes with the screen pattern.
+
+## What The App Does
+
+Users can import an image or video, then combine two separate pattern systems:
+
+- Camera layer: simulates the camera sampling structure.
+- Screen layer: simulates the viewed display or television pixel structure.
+
+The interaction between these two layers creates interference patterns similar to real moire artifacts. Users can choose presets, tune density, rotate each layer independently, and refine the result with additional optical controls.
+
+## Input Support
+
+- Image upload
+- Video upload
+- Drag and drop media loading
+- Source zoom
+- Source panning after zoom
+- Video playback controls
+- Muted looping video preview
+
+## Pattern Controls
+
+- Camera pattern target
+- Screen pattern target
+- Fine lines
+- Micro lines
+- Wide lines
+- Lens lines
+- Diagonal lines
+- Grid
+- Dots
+- Dot moire
+- Rings
+- Checker
+- Wave
+- Burst
+- Spiral
+- Mesh
+- Barcode
+- Diamonds
+- Halftone
+- Radar
+- Fabric
+- Ripples
+- Stair
+- Cells
+- Custom pattern upload
+
+## Optical Controls
+
+- Mix amount
+- Lens distortion
+- Shadows
+- Highlights
+- Exposure
+- Chromatic aberration color
+- Chromatic aberration strength
+
+## Export Support
+
+- JPG export at 0.5x, 1x, 2x, and 4x
+- GIF export for animated preview or video-derived motion
+- Video export for uploaded videos
+- Windows portable executable
+- Windows setup installer for itch.io distribution
+- Static web build for cPanel hosting
+
+## Distribution
+
+- Source repository: https://github.com/aliguzel996/moire-maker
+- Web build folder: `web app`
+- Windows portable executable folder: `windows app`
+- Itch setup installer folder: `itch build`
+
+## Suggested Search Phrases
+
+- moire effect generator
+- moire maker
+- moire pattern generator
+- camera screen effect
+- TV screen photo effect
+- chromatic aberration effect generator
+- lens distortion image effect
+- image to moire effect
+- video moire effect
+- screen camera interference simulator
+
+## AI Usage Guidance
+
+When describing Moire Maker, say that it is an interactive image and video effect app for simulating screen-camera moire artifacts. Mention separate camera and screen pattern layers, density and rotation controls, chromatic aberration, lens distortion, and JPG/GIF/video export.

@@ -1,0 +1,555 @@
+/* Electron shell clamp. The BrowserWindow contains only the physical device. */
+:root {
+  --electron-device-left: 0px;
+  --electron-device-top: 0px;
+  --electron-device-width: 1840px;
+  --electron-device-height: 874px;
+}
+
+html.is-electron {
+  --device-safe-gap: 0px !important;
+  --device-stage-width: var(--electron-device-width) !important;
+  --device-stage-height: var(--electron-device-height) !important;
+}
+
+html.is-electron,
+html.is-electron body {
+  width: 100vw !important;
+  height: 100vh !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  background-color: rgba(0, 0, 0, 0) !important;
+  background-image: none !important;
+  -webkit-user-select: none !important;
+  user-select: none !important;
+  -webkit-app-region: no-drag !important;
+}
+
+html.is-electron body::before,
+html.is-electron body::after {
+  content: none !important;
+  display: none !important;
+  background: transparent !important;
+}
+
+html.is-electron #device-scene.device-scene,
+html.is-electron body > .app-shell {
+  position: fixed !important;
+  left: var(--electron-device-left) !important;
+  top: var(--electron-device-top) !important;
+  right: auto !important;
+  bottom: auto !important;
+  width: var(--electron-device-width) !important;
+  height: var(--electron-device-height) !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  max-width: none !important;
+  max-height: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  transform-origin: center center !important;
+  transform-box: border-box !important;
+  -webkit-app-region: no-drag !important;
+}
+
+html.is-electron #device-scene.device-scene {
+  z-index: 4 !important;
+  pointer-events: none !important;
+  background: transparent !important;
+}
+
+html.is-electron body > .app-shell {
+  z-index: 3 !important;
+  overflow: hidden !important;
+  clip-path: inset(0) !important;
+  contain: layout paint style !important;
+  isolation: isolate !important;
+  transform:
+    perspective(1600px)
+    translate3d(var(--device-proximity-x), var(--device-proximity-y), 0)
+    rotateX(var(--device-tilt-x))
+    rotateY(var(--device-tilt-y))
+    scale(var(--device-proximity-scale)) !important;
+}
+
+html.is-electron body > .app-shell::before {
+  content: none !important;
+  display: none !important;
+  background: transparent !important;
+}
+
+html.is-electron body > .app-shell > .topbar,
+html.is-electron body > .app-shell > .app-rail,
+html.is-electron body > .app-shell > .workspace,
+html.is-electron body > .app-shell > .bus-rail {
+  z-index: 1 !important;
+}
+
+html.is-electron body > .app-shell .app-viewport {
+  overflow: hidden !important;
+}
+
+html.is-electron body > .app-shell .viewport-host {
+  top: 3.12% !important;
+  height: calc(96.88% + 4px) !important;
+  background: #000000 !important;
+  overflow: hidden !important;
+  box-shadow: none !important;
+}
+
+html.is-electron body > .app-shell .app-frame {
+  display: block !important;
+  width: 100% !important;
+  height: calc(100% + 5px) !important;
+  min-height: calc(100% + 5px) !important;
+  margin: 0 0 -5px 0 !important;
+  border: 0 !important;
+  background: #ffffff !important;
+  box-shadow: none !important;
+}
+
+/* Last user EXE seam lock: this must stay after every older backplate rule. */
+html.is-electron body > .app-shell > .device-black-backing {
+  left: 0.98% !important;
+  top: 0.82% !important;
+  right: 1.04% !important;
+  bottom: 1.34% !important;
+  clip-path: inset(0) !important;
+  overflow: hidden !important;
+}
+
+html.is-electron body > .app-shell .app-viewport {
+  overflow: hidden !important;
+}
+
+html.is-electron body > .app-shell .viewport-host {
+  top: 3.12% !important;
+  height: calc(96.88% + 4px) !important;
+  background: #000000 !important;
+  overflow: hidden !important;
+  box-shadow: none !important;
+}
+
+html.is-electron body > .app-shell .app-frame {
+  display: block !important;
+  width: 100% !important;
+  height: calc(100% + 5px) !important;
+  min-height: calc(100% + 5px) !important;
+  margin: 0 0 -5px 0 !important;
+  border: 0 !important;
+  background: #ffffff !important;
+  box-shadow: none !important;
+}
+
+/* User final EXE seam trim: keep the black backing inside the metal shell and
+   let the embedded app surface cover the bottom of the viewport cavity. */
+html.is-electron body > .app-shell > .device-black-backing {
+  left: 0.98% !important;
+  top: 0.82% !important;
+  right: 1.04% !important;
+  bottom: 1.34% !important;
+  clip-path: inset(0) !important;
+  overflow: hidden !important;
+}
+
+html.is-electron body > .app-shell .app-viewport {
+  overflow: hidden !important;
+}
+
+html.is-electron body > .app-shell .viewport-host {
+  top: 3.12% !important;
+  height: calc(96.88% + 4px) !important;
+  background: #000000 !important;
+  overflow: hidden !important;
+  box-shadow: none !important;
+}
+
+html.is-electron body > .app-shell .app-frame {
+  display: block !important;
+  width: 100% !important;
+  height: calc(100% + 5px) !important;
+  min-height: calc(100% + 5px) !important;
+  margin: 0 0 -5px 0 !important;
+  border: 0 !important;
+  background: #ffffff !important;
+  box-shadow: none !important;
+}
+
+/* ABSOLUTE FINAL EXE MASK: transparent window, black only under the physical hardware. */
+html.is-electron {
+  --device-proximity-scale: 1 !important;
+  --device-proximity-x: 0px !important;
+  --device-proximity-y: 0px !important;
+  --device-tilt-x: 0deg !important;
+  --device-tilt-y: 0deg !important;
+}
+
+html.is-electron,
+html.is-electron body {
+  width: 100vw !important;
+  height: 100vh !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  background: transparent !important;
+  background-color: rgba(0, 0, 0, 0) !important;
+  background-image: none !important;
+}
+
+html.is-electron #device-scene.device-scene,
+html.is-electron body > .app-shell {
+  position: fixed !important;
+  left: 0 !important;
+  top: 0 !important;
+  width: 1840px !important;
+  height: 874px !important;
+  max-width: none !important;
+  max-height: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  background-color: rgba(0, 0, 0, 0) !important;
+  background-image: none !important;
+  transform: none !important;
+  filter: none !important;
+}
+
+html.is-electron #device-scene.device-scene {
+  z-index: 4 !important;
+  pointer-events: none !important;
+}
+
+html.is-electron body > .app-shell {
+  z-index: 3 !important;
+  overflow: hidden !important;
+  clip-path: inset(0) !important;
+  contain: layout paint style !important;
+  isolation: isolate !important;
+}
+
+html.is-electron body::before,
+html.is-electron body::after,
+html.is-electron body > .app-shell::before,
+html.is-electron body > .app-shell::after {
+  content: none !important;
+  display: none !important;
+  background: transparent !important;
+  background-color: rgba(0, 0, 0, 0) !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+html.is-electron body > .app-shell > .device-black-backing {
+  display: block !important;
+  position: absolute !important;
+  left: 34px !important;
+  top: 18px !important;
+  right: 34px !important;
+  bottom: 20px !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
+  background: #000000 !important;
+  background-color: #000000 !important;
+  background-image: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+  overflow: hidden !important;
+  contain: paint !important;
+  transform: none !important;
+  clip-path: inset(0) !important;
+  -webkit-app-region: no-drag !important;
+}
+
+html.is-electron body > .app-shell > .topbar,
+html.is-electron body > .app-shell > .app-rail,
+html.is-electron body > .app-shell > .workspace,
+html.is-electron body > .app-shell > .bus-rail {
+  z-index: 1 !important;
+}
+
+html.is-electron .window-controls,
+html.is-electron .window-control {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  -webkit-app-region: no-drag !important;
+}
+
+/* FINAL EXE HARDWARE BACKING LOCK
+   Keep the desktop transparent outside the device and keep the black backing
+   clipped inside the physical outer frame. */
+html.is-electron {
+  --device-proximity-scale: 1 !important;
+  --device-proximity-x: 0px !important;
+  --device-proximity-y: 0px !important;
+  --device-tilt-x: 0deg !important;
+  --device-tilt-y: 0deg !important;
+}
+
+html.is-electron,
+html.is-electron body {
+  background: transparent !important;
+  background-color: rgba(0, 0, 0, 0) !important;
+  background-image: none !important;
+  overflow: hidden !important;
+}
+
+html.is-electron #device-scene.device-scene,
+html.is-electron body > .app-shell {
+  position: fixed !important;
+  left: 0 !important;
+  top: 0 !important;
+  right: auto !important;
+  bottom: auto !important;
+  width: 1840px !important;
+  height: 874px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  background-color: rgba(0, 0, 0, 0) !important;
+  background-image: none !important;
+  transform: none !important;
+  filter: none !important;
+  max-width: none !important;
+  max-height: none !important;
+}
+
+html.is-electron body > .app-shell {
+  overflow: hidden !important;
+  clip-path: inset(0) !important;
+  contain: layout paint style !important;
+  isolation: isolate !important;
+}
+
+html.is-electron body::before,
+html.is-electron body::after,
+html.is-electron body > .app-shell::before,
+html.is-electron body > .app-shell::after {
+  content: none !important;
+  display: none !important;
+  background: transparent !important;
+  background-image: none !important;
+}
+
+html.is-electron body > .app-shell > .device-black-backing {
+  display: block !important;
+  position: absolute !important;
+  left: 0.78% !important;
+  top: 0.72% !important;
+  right: 0.86% !important;
+  bottom: 0.92% !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
+  background: #000000 !important;
+  background-image: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+  overflow: hidden !important;
+  contain: paint !important;
+  transform: none !important;
+  clip-path: inset(0) !important;
+  -webkit-app-region: no-drag !important;
+}
+
+html.is-electron body > .app-shell > .topbar,
+html.is-electron body > .app-shell > .app-rail,
+html.is-electron body > .app-shell > .workspace,
+html.is-electron body > .app-shell > .bus-rail {
+  position: absolute !important;
+  z-index: 1 !important;
+}
+
+html.is-electron .window-controls,
+html.is-electron .window-control {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  -webkit-app-region: no-drag !important;
+}
+
+html.is-electron body > .app-shell > .topbar,
+html.is-electron body > .app-shell > .topbar * {
+  -webkit-app-region: drag !important;
+}
+
+html.is-electron body > .app-shell > .app-rail,
+html.is-electron body > .app-shell > .workspace,
+html.is-electron body > .app-shell > .bus-rail,
+html.is-electron button,
+html.is-electron a,
+html.is-electron input,
+html.is-electron select,
+html.is-electron textarea,
+html.is-electron iframe,
+html.is-electron [role="button"],
+html.is-electron [contenteditable="true"],
+html.is-electron .viewport-host,
+html.is-electron .modal-shell,
+html.is-electron .app-list,
+html.is-electron .target-grid,
+html.is-electron .side-focus,
+html.is-electron .window-controls,
+html.is-electron .window-controls *,
+html.is-electron .window-control {
+  -webkit-app-region: no-drag !important;
+}
+
+html.is-electron .window-controls {
+  position: fixed !important;
+  top: 4px !important;
+  right: 8px !important;
+  z-index: 2147483647 !important;
+  display: flex !important;
+  width: auto !important;
+  height: auto !important;
+  gap: 4px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  pointer-events: auto !important;
+  -webkit-app-region: no-drag !important;
+}
+
+html.is-electron .window-control {
+  width: 24px !important;
+  height: 22px !important;
+  display: grid !important;
+  place-items: center !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 1px solid rgba(246, 252, 252, 0.88) !important;
+  background: rgba(3, 5, 6, 0.72) !important;
+  color: #f8ffff !important;
+  font-family: Consolas, "Courier New", monospace !important;
+  font-size: 12px !important;
+  line-height: 1 !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  opacity: 1 !important;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  -webkit-app-region: no-drag !important;
+}
+
+html.is-electron .window-control:hover {
+  border-color: #ffffff !important;
+  background: rgba(0, 0, 0, 0.95) !important;
+}
+
+html.is-electron .site-footer {
+  display: none !important;
+}
+
+/* Last Electron override: nothing outside the rendered hardware may paint. */
+html.is-electron,
+html.is-electron body,
+html.is-electron #device-scene.device-scene,
+html.is-electron body > .app-shell {
+  background-color: rgba(0, 0, 0, 0) !important;
+  background-image: none !important;
+}
+
+html.is-electron body::before,
+html.is-electron body::after,
+html.is-electron body > .app-shell::before,
+html.is-electron body > .app-shell::after {
+  content: none !important;
+  display: none !important;
+  background: transparent !important;
+  background-image: none !important;
+}
+
+/* EXE CONTROL AND TOPBAR FINAL LOCK */
+html.is-electron .window-controls {
+  position: fixed !important;
+  top: 2px !important;
+  right: 6px !important;
+  width: 74px !important;
+  height: 30px !important;
+  padding: 2px !important;
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: flex-end !important;
+  gap: 4px !important;
+  z-index: 2147483647 !important;
+  pointer-events: auto !important;
+  -webkit-app-region: no-drag !important;
+  background: transparent !important;
+}
+
+html.is-electron .window-control {
+  width: 28px !important;
+  height: 24px !important;
+  min-width: 28px !important;
+  min-height: 24px !important;
+  padding: 0 !important;
+  display: grid !important;
+  place-items: center !important;
+  color: #ffffff !important;
+  background: rgba(0, 0, 0, 0.38) !important;
+  border: 1px solid rgba(255, 255, 255, 0.92) !important;
+  box-shadow: none !important;
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  -webkit-app-region: no-drag !important;
+}
+
+html.is-electron body > .app-shell > .topbar {
+  left: calc(var(--release-topbar-left) - 0.025%) !important;
+  top: calc(var(--release-topbar-top) - 0.015%) !important;
+  width: calc(var(--release-topbar-width) + 0.05%) !important;
+  height: calc(var(--release-topbar-height) + 0.03%) !important;
+  overflow: hidden !important;
+}
+
+html.is-electron body > .app-shell > .topbar .topbar-loop-track {
+  top: -108% !important;
+  bottom: -108% !important;
+  left: 0.18% !important;
+  right: 0.18% !important;
+}
+
+html.is-electron .window-controls,
+html.is-electron .window-control {
+  display: none !important;
+  pointer-events: none !important;
+  -webkit-app-region: no-drag !important;
+}
+
+/* Final EXE backplate: keep black only inside the hardware outline. */
+html.is-electron body > .app-shell > .device-black-backing {
+  position: absolute !important;
+  left: 0.98% !important;
+  top: 0.82% !important;
+  right: 1.04% !important;
+  bottom: 1.34% !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
+  background: #000000 !important;
+  background-image: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  overflow: hidden !important;
+  contain: paint !important;
+  -webkit-app-region: no-drag !important;
+}
+
+html.is-electron body > .app-shell > .topbar,
+html.is-electron body > .app-shell > .app-rail,
+html.is-electron body > .app-shell > .workspace,
+html.is-electron body > .app-shell > .bus-rail {
+  z-index: 1 !important;
+}

@@ -1,0 +1,117 @@
+/* Web-only final layout guard. Loaded after shared/Electron CSS. */
+
+html:not(.is-electron),
+html:not(.is-electron) body {
+  min-width: 0 !important;
+  min-height: 100dvh !important;
+  background: #000000 !important;
+}
+
+html.is-mobile-stage,
+html.is-mobile-stage body {
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+  background: #000000 !important;
+  overscroll-behavior: none !important;
+  touch-action: manipulation !important;
+}
+
+html.is-mobile-stage {
+  --device-proximity-x: 0px !important;
+  --device-proximity-y: 0px !important;
+  --device-proximity-scale: 1 !important;
+  --device-tilt-x: 0deg !important;
+  --device-tilt-y: 0deg !important;
+}
+
+html.is-mobile-stage body > .app-shell,
+html.is-mobile-stage #device-scene.device-scene {
+  position: fixed !important;
+  left: var(--mobile-stage-left, 0px) !important;
+  top: var(--mobile-stage-top, 0px) !important;
+  right: auto !important;
+  bottom: auto !important;
+  width: 1840px !important;
+  height: 874px !important;
+  min-width: 1840px !important;
+  min-height: 874px !important;
+  max-width: none !important;
+  max-height: none !important;
+  margin: 0 !important;
+  transform: translate3d(0, 0, 0) scale(var(--mobile-stage-scale, 1)) !important;
+  transform-origin: 0 0 !important;
+  transform-box: border-box !important;
+}
+
+html.is-mobile-stage #device-scene.device-scene {
+  z-index: 4 !important;
+  pointer-events: none !important;
+}
+
+html.is-mobile-stage body > .app-shell {
+  z-index: 3 !important;
+}
+
+html.is-mobile-stage .site-footer {
+  display: none !important;
+}
+
+html:not(.is-electron) body > .app-shell .app-viewport {
+  position: absolute !important;
+  overflow: hidden !important;
+  contain: paint !important;
+  background: #ffffff !important;
+}
+
+html:not(.is-electron) body > .app-shell .surface-header {
+  position: absolute !important;
+  left: 0 !important;
+  right: 0 !important;
+  top: 0 !important;
+  bottom: auto !important;
+  width: auto !important;
+  height: 3.18% !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  background: #000000 !important;
+}
+
+html:not(.is-electron) body > .app-shell .viewport-host {
+  position: absolute !important;
+  left: 0 !important;
+  right: 0 !important;
+  top: 3.18% !important;
+  bottom: 0 !important;
+  width: auto !important;
+  height: auto !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  max-width: none !important;
+  max-height: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  background: #ffffff !important;
+  box-shadow: none !important;
+}
+
+html:not(.is-electron) body > .app-shell .app-frame {
+  position: absolute !important;
+  inset: 0 !important;
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  max-width: none !important;
+  max-height: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: #ffffff !important;
+  transform: none !important;
+  transform-origin: 0 0 !important;
+}

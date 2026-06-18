@@ -1,0 +1,437 @@
+{
+  "suite": {
+    "name": "YCSWU Tools Special Edition",
+    "owner": "aliguzel996",
+    "githubUrl": "https://github.com/aliguzel996",
+    "supportUrl": "https://ycswu.co/araclar/",
+    "excludedAppIds": ["ycswu-tools-launcher"],
+    "manifestVersion": "0.1.0"
+  },
+  "assetClasses": [
+    {
+      "kind": "still-image",
+      "label": "image",
+      "extensions": ["png", "jpg", "jpeg", "webp", "bmp", "avif", "tif", "tiff"]
+    },
+    {
+      "kind": "vector",
+      "label": "vector",
+      "extensions": ["svg", "ai", "eps", "pdf"]
+    },
+    {
+      "kind": "animation",
+      "label": "animation",
+      "extensions": ["gif", "apng"]
+    },
+    {
+      "kind": "video",
+      "label": "video",
+      "extensions": ["mp4", "mov", "webm", "mkv", "avi"]
+    },
+    {
+      "kind": "model3d",
+      "label": "3d model",
+      "extensions": ["fbx", "glb", "gltf", "obj", "stl", "dae", "usdz"]
+    },
+    {
+      "kind": "scene",
+      "label": "scene",
+      "extensions": ["blend", "ycswuscene", "json"]
+    },
+    {
+      "kind": "layout",
+      "label": "layout",
+      "extensions": ["grid", "layout", "json"]
+    },
+    {
+      "kind": "text",
+      "label": "text",
+      "extensions": ["txt", "md", "json"]
+    },
+    {
+      "kind": "palette",
+      "label": "palette",
+      "extensions": ["ase", "aco", "css", "json"]
+    },
+    {
+      "kind": "archive",
+      "label": "bundle",
+      "extensions": ["zip"]
+    }
+  ],
+  "busAdapters": [
+    {
+      "id": "bus-rasterize",
+      "name": "asset bus rasterizer",
+      "from": ["vector", "model3d", "scene", "video", "animation"],
+      "to": ["still-image"],
+      "mode": "bus"
+    },
+    {
+      "id": "bus-vectorize",
+      "name": "asset bus vectorizer",
+      "from": ["still-image", "layout", "text"],
+      "to": ["vector"],
+      "mode": "bus"
+    },
+    {
+      "id": "bus-clip-frame",
+      "name": "asset bus frame extractor",
+      "from": ["video", "animation"],
+      "to": ["still-image"],
+      "mode": "bus"
+    },
+    {
+      "id": "bus-motion-pack",
+      "name": "asset bus motion packer",
+      "from": ["still-image", "vector"],
+      "to": ["animation", "video"],
+      "mode": "bus"
+    },
+    {
+      "id": "bus-extrude",
+      "name": "asset bus extruder",
+      "from": ["text", "vector", "layout", "still-image"],
+      "to": ["model3d"],
+      "mode": "bus"
+    },
+    {
+      "id": "bus-scene-pack",
+      "name": "asset bus scene packer",
+      "from": ["model3d", "scene", "still-image"],
+      "to": ["scene", "model3d"],
+      "mode": "bus"
+    },
+    {
+      "id": "bus-package",
+      "name": "asset bus packager",
+      "from": ["still-image", "vector", "animation", "video", "model3d", "scene", "layout", "text", "palette"],
+      "to": ["archive"],
+      "mode": "bus"
+    }
+  ],
+  "apps": [
+    {
+      "id": "pixelmaxxxing",
+      "name": "pixelmaxxxing",
+      "headline": "Mosaic remap, tone matching, batch recolor and clean SVG output.",
+      "icon": "./assets/pixelmaxxxing-logo.png",
+      "repoUrl": "https://github.com/aliguzel996/pixelmaxxxing",
+      "siteUrl": "https://ycswu.co/pixelmaxxxing/",
+      "accent": "#111111",
+      "accepts": [
+        { "kind": "still-image", "extensions": ["png", "jpg", "jpeg", "webp"] },
+        { "kind": "vector", "extensions": ["svg"] },
+        { "kind": "palette", "extensions": ["ase", "aco", "json"] }
+      ],
+      "produces": [
+        { "kind": "still-image", "extensions": ["png", "webp"] },
+        { "kind": "vector", "extensions": ["svg"] },
+        { "kind": "palette", "extensions": ["json"] }
+      ],
+      "transforms": [
+        { "from": ["still-image"], "to": ["still-image", "vector", "palette"] },
+        { "from": ["vector"], "to": ["still-image", "vector", "palette"] }
+      ],
+      "launch": {
+        "mode": "external",
+        "executableName": "pixelmaxxxing.exe",
+        "knownPaths": [
+          "C:\\Users\\guzel\\Documents\\Codex\\pixelmaxxxing\\dist\\pixelmaxxxing-portable-1.0.0-x64.exe"
+        ]
+      },
+      "embed": {
+        "mode": "local",
+        "localRoot": "C:\\Users\\guzel\\Documents\\Codex\\pixelmaxxxing\\release\\web",
+        "indexFile": "index.html",
+        "basePaths": ["/pixelmaxxxing/"]
+      }
+    },
+    {
+      "id": "giffer",
+      "name": "giffer",
+      "headline": "Clip or image sequence to GIF/MOV with crop, timing and export tuning.",
+      "icon": "./assets/giffer-logo.png",
+      "repoUrl": "https://github.com/aliguzel996/giffer",
+      "siteUrl": "https://ycswu.co/giffer/",
+      "accent": "#f04b35",
+      "accepts": [
+        { "kind": "video", "extensions": ["mp4", "mov", "webm"] },
+        { "kind": "animation", "extensions": ["gif"] }
+      ],
+      "produces": [
+        { "kind": "animation", "extensions": ["gif"] },
+        { "kind": "video", "extensions": ["mov", "mp4"] },
+        { "kind": "still-image", "extensions": ["png"] }
+      ],
+      "transforms": [
+        { "from": ["video", "animation"], "to": ["animation", "video", "still-image"] }
+      ],
+      "launch": {
+        "mode": "external",
+        "executableName": "Giffer.exe",
+        "knownPaths": [
+          "C:\\Users\\guzel\\Documents\\Codex\\2026-04-25\\files-mentioned-by-the-user-ekran\\release\\windows\\Giffer.exe"
+        ]
+      },
+      "embed": {
+        "mode": "local",
+        "localRoot": "C:\\Users\\guzel\\Documents\\Codex\\2026-04-25\\files-mentioned-by-the-user-ekran\\release\\web",
+        "indexFile": "index.html",
+        "basePaths": ["/giffer/"]
+      }
+    },
+    {
+      "id": "rooms",
+      "name": "rooms",
+      "headline": "Room builder with window, glass, lighting, image, SVG and FBX exports.",
+      "icon": "./assets/rooms-logo.svg",
+      "repoUrl": "https://github.com/aliguzel996/rooms",
+      "siteUrl": "https://ycswu.co/rooms/",
+      "accent": "#2d6cdf",
+      "accepts": [],
+      "produces": [
+        { "kind": "model3d", "extensions": ["fbx", "glb"] },
+        { "kind": "scene", "extensions": ["json", "ycswuscene"] },
+        { "kind": "still-image", "extensions": ["png"] },
+        { "kind": "vector", "extensions": ["svg"] }
+      ],
+      "transforms": [],
+      "launch": {
+        "mode": "external",
+        "executableName": "rooms.exe",
+        "knownPaths": []
+      },
+      "embed": {
+        "mode": "remote",
+        "url": "https://ycswu.co/rooms/",
+        "basePaths": ["/rooms/"]
+      }
+    },
+    {
+      "id": "fibonacci-grid-maker",
+      "name": "fibonacci-grid-maker",
+      "headline": "Fibonacci based grid layouts without manual ratio setup.",
+      "icon": "./assets/fibonacci-grid-maker-logo.svg",
+      "repoUrl": "https://github.com/aliguzel996/fibonacci-grid-maker",
+      "siteUrl": "https://ycswu.co/fibonacci-grid-maker/",
+      "accent": "#4b6f3d",
+      "accepts": [
+        { "kind": "layout", "extensions": ["json", "grid", "layout"] }
+      ],
+      "produces": [
+        { "kind": "layout", "extensions": ["json", "grid"] },
+        { "kind": "vector", "extensions": ["svg"] },
+        { "kind": "still-image", "extensions": ["png"] }
+      ],
+      "transforms": [
+        { "from": ["layout"], "to": ["layout", "vector", "still-image"] }
+      ],
+      "launch": {
+        "mode": "external",
+        "executableName": "fibonacci-grid-maker.exe",
+        "knownPaths": []
+      },
+      "embed": {
+        "mode": "local",
+        "localRoot": "C:\\Users\\guzel\\Documents\\Codex\\2026-05-19\\fibonacci-grid-maker-yap-caz\\web app",
+        "indexFile": "index.html",
+        "basePaths": ["/fibonacci-grid-maker/"]
+      }
+    },
+    {
+      "id": "kira-kira",
+      "name": "kira kira",
+      "headline": "Glitter highlight tool with glow, blades, bokeh and PNG export.",
+      "icon": "./assets/kira-kira-logo.svg",
+      "repoUrl": "https://github.com/aliguzel996/kira-kira",
+      "siteUrl": "https://ycswu.co/kira-kira/",
+      "accent": "#d1a826",
+      "accepts": [
+        { "kind": "still-image", "extensions": ["png", "jpg", "jpeg", "webp"] }
+      ],
+      "produces": [
+        { "kind": "still-image", "extensions": ["png", "webp"] }
+      ],
+      "transforms": [
+        { "from": ["still-image"], "to": ["still-image"] }
+      ],
+      "launch": {
+        "mode": "external",
+        "executableName": "kira-kira.exe",
+        "knownPaths": []
+      },
+      "embed": {
+        "mode": "local",
+        "localRoot": "C:\\Users\\guzel\\Documents\\Codex\\2026-05-23\\kira-kira-effect-ismi-kira-kira\\web app",
+        "indexFile": "index.html",
+        "basePaths": ["/kira-kira/"]
+      }
+    },
+    {
+      "id": "hot-vs-nice",
+      "name": "hot vs nice",
+      "headline": "SVG color exploration for warmer, calmer and alternate palette directions.",
+      "icon": "./assets/hot-vs-nice-logo.png",
+      "repoUrl": "https://github.com/aliguzel996/hot-vs-nice",
+      "siteUrl": "https://ycswu.co/hot-vs-nice/",
+      "accent": "#d8432e",
+      "accepts": [
+        { "kind": "vector", "extensions": ["svg"] }
+      ],
+      "produces": [
+        { "kind": "vector", "extensions": ["svg"] },
+        { "kind": "palette", "extensions": ["json", "css"] },
+        { "kind": "still-image", "extensions": ["png"] }
+      ],
+      "transforms": [
+        { "from": ["vector"], "to": ["vector", "palette", "still-image"] }
+      ],
+      "launch": {
+        "mode": "external",
+        "executableName": "hot-vs-nice.exe",
+        "knownPaths": [
+          "C:\\Users\\guzel\\Documents\\Codex\\2026-04-24\\vekt-re-renk-se-enekleri-uygulamas\\release\\github\\hot-vs-nice-win32-x64\\hot-vs-nice.exe"
+        ]
+      },
+      "embed": {
+        "mode": "local",
+        "localRoot": "C:\\Users\\guzel\\Documents\\Codex\\2026-04-24\\vekt-re-renk-se-enekleri-uygulamas",
+        "indexFile": "index.html",
+        "basePaths": ["/hot-vs-nice/"]
+      }
+    },
+    {
+      "id": "gift-converter",
+      "name": "gift converter",
+      "headline": "Batch video-to-GIF conversion with per-file controls and ZIP-ready bundles.",
+      "icon": "./assets/gift-converter-logo.png",
+      "repoUrl": "https://github.com/aliguzel996/GIFt-converter",
+      "siteUrl": "https://ycswu.co/gift-converter/",
+      "accent": "#7b4cc2",
+      "accepts": [
+        { "kind": "video", "extensions": ["mp4", "mov", "webm", "mkv"] },
+        { "kind": "animation", "extensions": ["gif"] }
+      ],
+      "produces": [
+        { "kind": "animation", "extensions": ["gif"] },
+        { "kind": "archive", "extensions": ["zip"] }
+      ],
+      "transforms": [
+        { "from": ["video", "animation"], "to": ["animation", "archive"] }
+      ],
+      "launch": {
+        "mode": "external",
+        "executableName": "gift-converter.exe",
+        "knownPaths": [
+          "C:\\Users\\guzel\\Documents\\Codex\\2026-04-23-masa-st-al-an-bulk-video\\release\\gift-converter-0.1.0.exe"
+        ]
+      },
+      "embed": {
+        "mode": "local",
+        "localRoot": "C:\\Users\\guzel\\Documents\\Codex\\2026-04-23-masa-st-al-an-bulk-video\\cpanel\\gift-converter",
+        "indexFile": "index.html",
+        "basePaths": ["/gift-converter/"]
+      }
+    },
+    {
+      "id": "moire-maker",
+      "name": "Moire Maker",
+      "headline": "Screen-camera interference effects from images and videos.",
+      "icon": "./assets/moire-maker-logo.svg",
+      "repoUrl": "https://github.com/aliguzel996/moire-maker",
+      "siteUrl": "https://ycswu.co/moire-maker/",
+      "accent": "#2f8a8d",
+      "accepts": [
+        { "kind": "still-image", "extensions": ["png", "jpg", "jpeg", "webp"] },
+        { "kind": "video", "extensions": ["mp4", "mov", "webm"] },
+        { "kind": "animation", "extensions": ["gif"] }
+      ],
+      "produces": [
+        { "kind": "still-image", "extensions": ["png", "webp"] },
+        { "kind": "video", "extensions": ["mp4", "webm"] },
+        { "kind": "animation", "extensions": ["gif"] }
+      ],
+      "transforms": [
+        { "from": ["still-image", "video", "animation"], "to": ["still-image", "animation", "video"] }
+      ],
+      "launch": {
+        "mode": "external",
+        "executableName": "Moire Maker.exe",
+        "knownPaths": []
+      },
+      "embed": {
+        "mode": "local",
+        "localRoot": "C:\\Users\\guzel\\Documents\\Codex\\2026-05-21\\moire-efekt-program-yap-caz-web\\web app",
+        "indexFile": "index.html",
+        "basePaths": ["/moire-maker/"]
+      }
+    },
+    {
+      "id": "2d-to-3d",
+      "name": "2d-to-3d",
+      "headline": "Vector text and shape depth builder for 2D-to-3D passes.",
+      "icon": "./assets/2d-to-3d-logo.png",
+      "repoUrl": "https://github.com/aliguzel996/2D-to-3D",
+      "siteUrl": "https://ycswu.co/2d-to-3d/",
+      "accent": "#6b6f76",
+      "accepts": [
+        { "kind": "vector", "extensions": ["svg"] }
+      ],
+      "produces": [
+        { "kind": "model3d", "extensions": ["fbx", "glb", "obj"] },
+        { "kind": "scene", "extensions": ["json", "ycswuscene"] },
+        { "kind": "still-image", "extensions": ["png"] }
+      ],
+      "transforms": [
+        { "from": ["vector"], "to": ["model3d", "scene", "still-image"] }
+      ],
+      "launch": {
+        "mode": "external",
+        "executableName": "2D to 3D.exe",
+        "knownPaths": [
+          "C:\\Users\\guzel\\Documents\\Codex\\2026-04-29\\vector-text-extruder-yap-caz-yani\\2D to 3D\\windows app\\2d-to-3d-portable-0.1.0.exe"
+        ]
+      },
+      "embed": {
+        "mode": "local",
+        "localRoot": "C:\\Users\\guzel\\Documents\\Codex\\2026-04-29\\vector-text-extruder-yap-caz-yani\\2D to 3D\\web app",
+        "indexFile": "index.html",
+        "basePaths": ["/2d-to-3d/"]
+      }
+    },
+    {
+      "id": "ngon-junk",
+      "name": "ngon-junk",
+      "headline": "3D look-dev workspace for scene preview, materials, UVs and exports.",
+      "icon": "./assets/ngon-junk-logo.png",
+      "repoUrl": "https://github.com/aliguzel996/ngon-junk",
+      "siteUrl": "https://ycswu.co/ngon-junk/",
+      "accent": "#f28a14",
+      "accepts": [
+        { "kind": "model3d", "extensions": ["fbx", "glb", "gltf", "obj"] }
+      ],
+      "produces": [
+        { "kind": "model3d", "extensions": ["fbx", "glb", "gltf", "obj"] },
+        { "kind": "scene", "extensions": ["json", "ycswuscene"] },
+        { "kind": "still-image", "extensions": ["png", "webp"] }
+      ],
+      "transforms": [
+        { "from": ["model3d"], "to": ["model3d", "scene", "still-image"] }
+      ],
+      "launch": {
+        "mode": "external",
+        "executableName": "ngon-junk.exe",
+        "knownPaths": [
+          "C:\\Users\\guzel\\Documents\\Codex\\ngon-junk\\release\\windows app\\ngon-junk-1.1.0.exe"
+        ]
+      },
+      "embed": {
+        "mode": "local",
+        "localRoot": "C:\\Users\\guzel\\Documents\\Codex\\ngon-junk\\release\\web app",
+        "indexFile": "index.html",
+        "basePaths": ["/ngon-junk/"]
+      }
+    }
+  ]
+}

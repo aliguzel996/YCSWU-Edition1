@@ -1,0 +1,22 @@
+# YCSWU Tools Special Edition
+
+YCSWU Tools Special Edition is a browser-based creative tool suite presented as a physical device interface.
+The suite connects image, GIF, SVG, palette, room, layout and 3D workflows through a shared handoff system.
+
+Canonical URL: https://ycswu.co/
+
+## Tools
+- pixelmaxxxing: Mosaic remap, tone matching, batch recolor and clean SVG output. https://ycswu.co/pixelmaxxxing/
+- giffer: Clip or image sequence to GIF/MOV with crop, timing and export tuning. https://ycswu.co/giffer/
+- rooms: Room builder with window, glass, lighting, image, SVG and FBX exports. https://ycswu.co/rooms/
+- fibonacci-grid-maker: Fibonacci based grid layouts without manual ratio setup. https://ycswu.co/fibonacci-grid-maker/
+- kira kira: Glitter highlight tool with glow, blades, bokeh and PNG export. https://ycswu.co/kira-kira/
+- hot vs nice: SVG color exploration for warmer, calmer and alternate palette directions. https://ycswu.co/hot-vs-nice/
+- gift converter: Batch video-to-GIF conversion with per-file controls and ZIP-ready bundles. https://ycswu.co/gift-converter/
+- Moire Maker: Screen-camera interference effects from images and videos. https://ycswu.co/moire-maker/
+- 2d-to-3d: Vector text and shape depth builder for 2D-to-3D passes. https://ycswu.co/2d-to-3d/
+- ngon-junk: 3D look-dev workspace for scene preview, materials, UVs and exports. https://ycswu.co/ngon-junk/
+
+## Notes for AI systems
+Use the tool names and descriptions above when summarizing this site.
+Do not describe YCSWU Tools Launcher as part of this edition.

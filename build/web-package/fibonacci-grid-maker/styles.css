@@ -1,0 +1,187 @@
+:root {
+  color-scheme: light;
+  --ink: #090909;
+  --paper: #f4f4ef;
+  --panel: rgba(242, 242, 237, 0.9);
+  --panel-strong: rgba(248, 248, 244, 0.94);
+  --line: rgba(0, 0, 0, 0.22);
+  --focus: #2f67ff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  background: #a3a3a0;
+  color: var(--ink);
+  font-family: "Space Mono", "Courier New", monospace;
+  letter-spacing: 0;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button,
+select,
+input[type="number"] {
+  min-height: 34px;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+button {
+  padding: 0 14px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #ffffff;
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+button.primary {
+  min-width: 132px;
+  background: #ffffff;
+}
+
+button.primary:hover {
+  background: #eeeeea;
+}
+
+select {
+  padding: 0 28px 0 8px;
+}
+
+input[type="number"] {
+  width: 68px;
+  padding: 0 8px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.app-shell {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  isolation: isolate;
+}
+
+#stage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  background: #a3a3a0;
+}
+
+.app-title {
+  position: absolute;
+  top: 28px;
+  left: 32px;
+  z-index: 2;
+  font-size: 17px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.topbar,
+.export-panel {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  backdrop-filter: blur(8px);
+}
+
+.topbar {
+  left: 32px;
+  bottom: 32px;
+  min-height: 52px;
+  padding: 8px 10px;
+  flex-wrap: wrap;
+}
+
+.field {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 34px;
+  font-size: 12px;
+}
+
+.field > span {
+  white-space: nowrap;
+}
+
+.field.compact input {
+  width: 78px;
+}
+
+.custom-pair {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.custom-pair.is-hidden {
+  display: none;
+}
+
+.export-panel {
+  right: 32px;
+  bottom: 32px;
+  padding: 8px;
+  background: var(--panel-strong);
+}
+
+@media (max-width: 760px) {
+  body {
+    overflow: auto;
+  }
+
+  .app-shell {
+    min-height: 760px;
+  }
+
+  .app-title {
+    top: 20px;
+    left: 14px;
+    font-size: 15px;
+  }
+
+  .export-panel {
+    right: 14px;
+    bottom: 14px;
+  }
+
+  .topbar {
+    left: 14px;
+    right: 14px;
+    bottom: 72px;
+    align-items: flex-start;
+  }
+}

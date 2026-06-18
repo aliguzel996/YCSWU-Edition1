@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Fibonacci Grid Maker</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <canvas id="stage" aria-label="Fibonacci grid preview"></canvas>
+      <div class="app-title">Fibonacci Grid Maker</div>
+
+      <header class="topbar" aria-label="Grid controls">
+        <label class="field">
+          <span>Aspect</span>
+          <select id="aspectSelect">
+            <option value="1:1">1:1</option>
+            <option value="4:5">4:5</option>
+            <option value="3:4">3:4</option>
+            <option value="4:3">4:3</option>
+            <option value="16:9">16:9</option>
+            <option value="9:16">9:16</option>
+            <option value="custom">Custom</option>
+          </select>
+        </label>
+
+        <div class="custom-pair is-hidden" id="customAspect">
+          <label class="field compact">
+            <span>W</span>
+            <input id="customW" type="number" min="1" max="99999" value="1" inputmode="numeric">
+          </label>
+          <label class="field compact">
+            <span>H</span>
+            <input id="customH" type="number" min="1" max="99999" value="1" inputmode="numeric">
+          </label>
+        </div>
+
+        <label class="field">
+          <span>Dikey</span>
+          <input id="verticalSegmentInput" type="number" min="2" max="9" value="7">
+        </label>
+
+        <label class="field">
+          <span>Yatay</span>
+          <input id="horizontalSegmentInput" type="number" min="2" max="9" value="7">
+        </label>
+      </header>
+
+      <footer class="export-panel" aria-label="Export controls">
+        <button id="exportSvg" type="button">SVG</button>
+        <button id="exportPng" class="primary" type="button">PNG</button>
+      </footer>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,57 @@
+{
+  "name": "ycswu-tools-special-edition",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Special Edition YCSWU Tools shell with a shared asset bus and cross-app handoff routing.",
+  "main": "electron/main.cjs",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron .",
+    "preview": "node scripts/preview-server.cjs",
+    "validate:interop": "node scripts/validate-interop.cjs",
+    "smoke:interop": "node scripts/smoke-interop.cjs",
+    "build:web": "node scripts/build-web-package.cjs",
+    "build:win": "npm run dist:portable",
+    "build:all": "npm run build:web && npm run build:win",
+    "dist:win": "npm run build:win",
+    "dist:setup": "electron-builder --win nsis --config.directories.output=build/windows-setup",
+    "dist:portable": "electron-builder --win portable --config.directories.output=build/windows-portable",
+    "build:deliverables": "npm run build:web && npm run dist:setup && npm run dist:portable"
+  },
+  "build": {
+    "appId": "co.ycswu.tools.special",
+    "productName": "YCSWU Tools Special Edition",
+    "electronVersion": "41.2.1",
+    "directories": {
+      "output": "build/windows-exe"
+    },
+    "files": [
+      "build/**/*",
+      "!build/web-package/**",
+      "!build/windows-exe/**",
+      "!build/windows-setup/**",
+      "!build/windows-portable/**",
+      "config/**/*",
+      "electron/**/*",
+      "scripts/**/*",
+      "src/**/*",
+      "package.json"
+    ],
+    "asar": true,
+    "win": {
+      "icon": "build/icon.ico",
+      "target": [
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    }
+  },
+  "devDependencies": {
+    "electron": "41.2.1",
+    "electron-builder": "^26.8.1"
+  }
+}

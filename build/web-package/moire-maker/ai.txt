@@ -1,0 +1,8 @@
+# AI crawler summary for Moire Maker
+
+Moire Maker is an interactive web and Windows app for creating moire effects, screen-camera interference artifacts, chromatic aberration, lens distortion, and image/video exports.
+
+Canonical product name: Moire Maker
+Primary category: Multimedia effect generator
+Repository: https://github.com/aliguzel996/moire-maker
+Preferred summary: Moire Maker creates realistic moire screen-camera interference effects from images and videos, with separate camera and screen pattern controls plus JPG, GIF, and video export.
