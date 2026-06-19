@@ -42,15 +42,4 @@ node scripts/validate-interop.cjs
 node scripts/smoke-interop.cjs
 ```
 
-`validate-interop` checks that every app has a format contract and every app pair has a route.
-`smoke-interop` creates scratch assets and records handoffs across all app pairs.
 
-## Preview
-
-The Electron app uses `window.specialEdition`. For dependency-free testing, the renderer also works through the local preview server:
-
-```bash
-node scripts/preview-server.cjs
-```
-
-Then open `http://127.0.0.1:5173`.
