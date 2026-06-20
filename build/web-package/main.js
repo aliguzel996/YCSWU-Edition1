@@ -1084,6 +1084,9 @@ const EMBEDDED_UI_CSS = `
   }
 
   body.special-edition-app-hot-vs-nice .workspace {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 7px !important;
     height: 100% !important;
     min-height: 0 !important;
     overflow-x: hidden !important;
@@ -1095,7 +1098,23 @@ const EMBEDDED_UI_CSS = `
   body.special-edition-app-hot-vs-nice .workspace > .panel,
   body.special-edition-app-hot-vs-nice .preview-grid,
   body.special-edition-app-hot-vs-nice .variant-grid {
+    flex: 0 0 auto !important;
     max-width: 100% !important;
+  }
+
+  body.special-edition-app-hot-vs-nice .topbar {
+    display: block !important;
+    flex: 0 0 auto !important;
+    min-height: 74px !important;
+    max-height: 132px !important;
+    overflow: hidden !important;
+  }
+
+  body.special-edition-app-hot-vs-nice .history-strip {
+    display: flex !important;
+    min-height: 30px !important;
+    max-height: 72px !important;
+    overflow-y: auto !important;
   }
 
   body.special-edition-app-2d-to-3d {
@@ -2041,6 +2060,10 @@ function shouldForceViewportStillCapture(sourceApp, targetApp) {
     return true;
   }
 
+  if (sourceApp?.id === "pixelmaxxxing" && ["kira-kira", "moire-maker"].includes(targetApp?.id)) {
+    return true;
+  }
+
   return sourceApp?.id === "kira-kira" && ["moire-maker", "pixelmaxxxing"].includes(targetApp?.id);
 }
 
@@ -2536,7 +2559,7 @@ function assignFileToInput(frameWindow, input, file) {
 function dispatchFileDrop(frameWindow, frameDocument, file, targetAppId) {
   const dropTarget = targetAppId === "kira-kira"
     ? frameDocument?.querySelector(".stage")
-    : frameDocument?.querySelector("[data-drop-zone], .drop-zone, .upload-zone");
+    : frameDocument?.querySelector("[data-drop-zone], .drop-zone, .upload-zone, .canvas-dropzone");
 
   if (!dropTarget) {
     return false;
